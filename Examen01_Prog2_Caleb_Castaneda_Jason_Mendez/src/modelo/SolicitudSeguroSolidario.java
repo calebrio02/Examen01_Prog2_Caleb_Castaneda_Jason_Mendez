@@ -4,6 +4,9 @@ public class SolicitudSeguroSolidario {
 	
 //ATRIBUTOS EXCLUSIVOS DE LA PRESENTE CLASE 
 		String fechaHoraSolicitud;
+
+
+		String nombreServicio;
 		int indiceSolicitud;
 
 		
@@ -67,16 +70,28 @@ public class SolicitudSeguroSolidario {
 		 this.v = v;
 	 }
 	 
+	 public String getNombreServicio() {
+		 return nombreServicio;
+	 }
+	 
+	 public void setNombreServicio(String nombreServicio) {
+		 this.nombreServicio = nombreServicio;
+	 }
+	 
+	 
+	 
+	 
 	 // OTROS METODOS
 //--------------------------------------------------------------------------------------------------- 
 	 
 	 public String mostrar() {
 		String mensaje = "";
 		
-		mensaje= "Solicitud"
-				+ ""
-				+ ""
-				+ "";
+		mensaje= "FECHA/HORA DE SOLICITUD; " 
+				+ getFechaHoraSolicitud()
+				+ a.mostrar()
+				+ SaberTipoSolicitud(getNombreServicio());
+				
 		
 		return mensaje;
 	 }

@@ -32,6 +32,22 @@ public class Asegurado extends Persona{
 	public void setCategoria(String categoria) {
 		Categoria = categoria;
 	}
+	
+	public String mostrar() {
+		String mensaje="";
+		
+		mensaje = "DATOS ASEGURADO \n\n"
+				+ "NOMBRE: " + getNombre() + "\n"
+				+ "EDAD: " + getEdad() + "\n"
+				+ "CEDULA: " + getCedula() + "\n"
+				+ "POLIZA: " + getNumPoliza() + "\n"
+				+ "DIRECCION: " + getDireccion() + "\n"
+				+ "CATEGORIA: " + getCategoria() + "\n";
+		
+		
+		return mensaje;
+		
+	}
 
 	
 }
