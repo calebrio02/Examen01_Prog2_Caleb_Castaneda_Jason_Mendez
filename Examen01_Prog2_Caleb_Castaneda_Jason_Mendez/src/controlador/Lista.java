@@ -49,11 +49,9 @@ public class Lista {
 
 			
 			int size=0;
-			//int numPaciente=0; //
-
 			
 			
-			public void insertar(SolicitudSeguroSolidario s) {//SE IRAN AGREGANDO LAS SOLICITUDES CONFORME EN EL REGISTRO DEL SEGURO
+			public void insertar(SolicitudSeguroSolidario s) {//SE IRAN AGREGANDO LAS SOLICITUDES EN EL REGISTRO DEL SEGURO
 				solicitudes.add(s);
 				size++;
 			}
@@ -65,35 +63,34 @@ public class Lista {
 					
 					try {
 						if(solicitudes.isEmpty()) {///Si esta vacia se despliega el memnsaje
-							mensajeTemporizado("Lista Vacia", 800);
+							mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
 						}else {
 					
 							JOptionPane.showMessageDialog(null, solicitudes.get(d-1).mostrar()); 
 						}
 						}catch (Exception e) {
-							mensajeTemporizado("Registro no existe", 800);
+							mensajeTemporizado("SOLICITUD NO EXISTE", 1500);
 
 						}
 					
 			}
 			
-			public SolicitudSeguroSolidario buscar(int d) {//metodo para buscar un cliente en especifico
-				//la variable "d" se utiliza para recibir el dato del JTxtField
-				
+			public SolicitudSeguroSolidario buscar(int d) {//METODO PARA BUSCAR A UN ASEGURADO EN ESPECIFICO, LA VARIABEL "d" REFERENTE A DATO, SE UTILIZARA PARA RECIBIR EL DATO DE INGRESADO EN GUI
 				
 				SolicitudSeguroSolidario s = new SolicitudSeguroSolidario();
 					
 					try {
 						if(solicitudes.isEmpty()) {///Si esta vacia se despliega el memnsaje
-							mensajeTemporizado("Lista Vacia", 800);
+							mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
 							s = null;
+							
 						}else{
 							s = solicitudes.get(d-1);
 
 							
 						}
 						}catch (Exception e) {
-							mensajeTemporizado("Registro no existe", 800);
+							mensajeTemporizado("SOLICITUD NO EXISTE", 1500);
 							
 						}
 					
@@ -103,14 +100,21 @@ public class Lista {
 					
 			}
 			
-			public void actualizar(int indice, SolicitudSeguroSolidario s) {//metodo para buscar un cliente en especifico
-				//la variable "d" se utiliza para recibir el dato del JTxtField
-				
+			public void actualizar(int indice, SolicitudSeguroSolidario s) {//SE UTILIZA LA MISMA DINAMICA QUE EN BUSCAR,
+																			//EL PARAMETROS "d" REFERENTE A DATO, SE UTILIZARA PARA RECIBIR EL DATO DE INGRESADO EN GUI,
+																			//JUNTO AL OBJETO DE TIPO SOLICITUD
+																			//**METODO EXCLUSIVO PARA EL AGENTE CORREDOR DE SEGUROS**
+
 				solicitudes.set((indice-1), s);
 				
 			}
 			
-			public void eliminarLista() {
+			
+			
+			public void eliminarLista() {//SE ELIMINA DE FORMA TOTAL EL REGISTRO DE SOLICITUDES,
+											//**METODO EXCLUSIVO PARA EL AGENTE CORREDOR DE SEGUROS**
+				
+				
 				solicitudes.removeAll(solicitudes);
 			}
 			
@@ -120,22 +124,24 @@ public class Lista {
 						
 			
 			
-			public void suprimir(int d) {//funciona igual que el mostrar, con la diferencia que el dato se elimina y se le hace saber al user de lo acontecido 
-				//la variable d sirve para tomar el dato del jtxtfield en la interfaz, CORRESPONDIENTE AL INDICE QUE CONTIENE AL OBJETO
+			public void suprimir(int d) {	//SE UTILIZA LA MISMA DINAMICA QUE EN BUSCAR Y ACTUALIZAR
+											//EL PARAMETROS "d" REFERENTE A DATO, SE UTILIZARA PARA RECIBIR EL DATO DE INGRESADO EN GUI,
+											//**METODO EXCLUSIVO PARA EL AGENTE CORREDOR DE SEGUROS**
+
 				
 				
 				try {
 					if(solicitudes.isEmpty()){///Si esta vacia se despliega el memnsaje
-						mensajeTemporizado("Lista Vacia", 800);
+						mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
 					}else {
 						
 						solicitudes.remove((d-1));
-						mensajeTemporizado("Registrp [" + d + "]" + "eliminado", 800);
+						mensajeTemporizado("SOLICITUD [" + d + "]" + "eliminado", 800);
 						size--;
 					}
 					
 					}catch (Exception e) {
-						mensajeTemporizado("Registro no existe", 800);
+						mensajeTemporizado("SOLICITUD NO EXISTE", 1500);
 					}
 				
 				
@@ -144,22 +150,27 @@ public class Lista {
 			
 			
 			
-			public String mostrar() {//metodo para mostrar todos los datos que haya hasta ese momento
+			public String mostrar() {//EL ASEGURADO PODRA VER EL TOTAL DE SUS SOLICITUDES JUNTO AL DETALLE DE LAS MISMAS
+				
+				
 				
 				String mensaje="";
 				if(solicitudes.isEmpty()) {
-					mensajeTemporizado("Lista Vacia", 800);//si esta vacia se hace uso del metodo correspondiente y se devuelve este mensaje
+					
+					
+					mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);//si esta vacia se hace uso del metodo correspondiente y se devuelve este mensaje
+					
+					
 				}else {
 					//Datos para ver los datos de forma dinamica
-					
-					//String texto="";
+				
 					for (int i = 0; i < solicitudes.size(); i++) {
 						mensaje+=solicitudes.get(i).mostrar()+ "\n\n";
 						
 					}
-					//texto+= mensaje;
 					
-					//De lo contrario se devuelve el mensaje con lo que contenga
+					
+					
 				}
 				return mensaje;
 			}
@@ -181,7 +192,7 @@ public class Lista {
 			}
 			
 			
-			public boolean existeElemento(int d) {//metodo para buscar un cliente en especifico
+			public boolean existeElemento(int d) {
 				
 				
 				//la variable "d" se utiliza para recibir el dato del JTxtField
@@ -190,13 +201,13 @@ public class Lista {
 					
 					try {
 						if(solicitudes.isEmpty()) {///Si esta vacia se despliega el mensaje
-							mensajeTemporizado("Lista Vacia", 800);
+							mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
 						}else {
 							existe = true;
 							
 						}
 						}catch (Exception e) {
-							mensajeTemporizado("Registro no existe", 800);
+							mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
 							existe = false;
 						}
 					return existe;

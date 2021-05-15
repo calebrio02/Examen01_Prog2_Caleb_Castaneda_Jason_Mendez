@@ -33,6 +33,7 @@ public class Asegurado extends Persona{
 		Categoria = categoria;
 	}
 	
+	
 	public String mostrar() {
 		String mensaje="";
 		
@@ -46,6 +47,18 @@ public class Asegurado extends Persona{
 		
 		
 		return mensaje;
+		
+	}
+	
+	
+	public void ingresar(String nombre, String edad, String dni, String TipoPoliza, String Direccion) {
+		
+		setNombre(nombre);
+		setEdad(edad);
+		setCedula(dni);
+		setCategoria(TipoPoliza);
+		setDireccion(Direccion);
+
 		
 	}
 
