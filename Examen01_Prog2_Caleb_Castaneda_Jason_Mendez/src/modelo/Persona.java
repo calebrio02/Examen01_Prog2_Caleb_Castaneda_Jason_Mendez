@@ -1,8 +1,16 @@
 package modelo;
 
 public class Persona {
+	
+	//ATRIBUTOS DE LA CLASE PERSONA
 
 	String nombre;
+	String edad;
+	String cedula;
+	
+	
+	//RESPECTIVOS METDOS SETTERS AND GETTERS
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -21,8 +29,6 @@ public class Persona {
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
-	String edad;
-	String cedula;
 	
 	
 }
