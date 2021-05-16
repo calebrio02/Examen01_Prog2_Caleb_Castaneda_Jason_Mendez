@@ -364,11 +364,62 @@ import java.awt.event.MouseAdapter;
 					JPanel menuInserta = new JPanel();
 					menuInserta.setLayout(null);
 					menuInserta.setBackground(Color.LIGHT_GRAY);
-					menuInserta.setBounds(112, 0, 614, 447);
+					menuInserta.setBounds(112, 0, 624, 447);
 					bienvenidaAsegurado.add(menuInserta);
 					
+					JPanel panelPagoServicios = new JPanel();
+					panelPagoServicios.setVisible(false);
+					
+					JPanel panelVisitaMedica = new JPanel();
+					panelVisitaMedica.setBounds(314, 81, 283, 290);
+					menuInserta.add(panelVisitaMedica);
+					panelVisitaMedica.setLayout(null);
+					
+					JComboBox boxEspecialidadMedica = new JComboBox();
+					boxEspecialidadMedica.setFont(new Font("Sitka Text", Font.BOLD, 12));
+					boxEspecialidadMedica.setToolTipText("Escoge la especialidad medica deseada");
+					boxEspecialidadMedica.setModel(new DefaultComboBoxModel(new String[] {"Elije especialidad medica", "Medicina General", "Fisioterapia", "Psicologia"}));
+					boxEspecialidadMedica.setBounds(25, 23, 248, 22);
+					panelVisitaMedica.add(boxEspecialidadMedica);
+					
+					JLabel lblNewLabel_3 = new JLabel("Detalle motivo de visita");
+					lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+					lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD, 13));
+					lblNewLabel_3.setBounds(35, 102, 214, 22);
+					panelVisitaMedica.add(lblNewLabel_3);
+					
+					JScrollPane sPDetalleMotivoVisita = new JScrollPane();
+					sPDetalleMotivoVisita.setBounds(25, 135, 236, 123);
+					panelVisitaMedica.add(sPDetalleMotivoVisita);
+					
+					JTextArea tDetalleVisita = new JTextArea();
+					tDetalleVisita.setToolTipText("Especifique el motivo de su visita medica");
+					sPDetalleMotivoVisita.setViewportView(tDetalleVisita);
+					panelPagoServicios.setBounds(314, 81, 283, 290);
+					menuInserta.add(panelPagoServicios);
+					panelPagoServicios.setLayout(null);
+					
+					JComboBox boxTipoPagoServicio = new JComboBox();
+					boxTipoPagoServicio.setFont(new Font("Sitka Text", Font.BOLD, 12));
+					boxTipoPagoServicio.setModel(new DefaultComboBoxModel(new String[] {" Tipo de servicio a pagar", "Publico", "Municipal"}));
+					boxTipoPagoServicio.setToolTipText("Seleccione el tipo de servicio a pagar");
+					boxTipoPagoServicio.setBounds(26, 11, 236, 27);
+					panelPagoServicios.add(boxTipoPagoServicio);
+					
+					JScrollPane sPDetallePagoServicio = new JScrollPane();
+					sPDetallePagoServicio.setBounds(26, 158, 236, 97);
+					panelPagoServicios.add(sPDetallePagoServicio);
+					
+					JTextArea tDetallePagoServicio = new JTextArea();
+					sPDetallePagoServicio.setViewportView(tDetallePagoServicio);
+					
+					JLabel lblNewLabel_1 = new JLabel("Especifica servicio y detalla monto");
+					lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
+					lblNewLabel_1.setBounds(26, 128, 236, 19);
+					panelPagoServicios.add(lblNewLabel_1);
+					
 					JTextArea tIngreso_1 = new JTextArea();
-					tIngreso_1.setToolTipText("especifique el ingreso/salario");
+					tIngreso_1.setToolTipText("Ingrese la edad del asegurado");
 					tIngreso_1.setOpaque(false);
 					tIngreso_1.setForeground(new Color(47, 79, 79));
 					tIngreso_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
@@ -385,13 +436,13 @@ import java.awt.event.MouseAdapter;
 					JButton listo = new JButton("Listo!");
 					listo.setToolTipText("finalizar de agregar los datos");
 					listo.setFont(new Font("Dialog", Font.BOLD, 13));
-					listo.setBounds(314, 377, 109, 29);
+					listo.setBounds(314, 390, 109, 29);
 					menuInserta.add(listo);
 					
 					JButton btnBorraD = new JButton("Cancelar");
 					btnBorraD.setToolTipText("refresca el menu");
 					btnBorraD.setFont(new Font("Dialog", Font.BOLD, 13));
-					btnBorraD.setBounds(444, 377, 109, 29);
+					btnBorraD.setBounds(443, 390, 109, 29);
 					menuInserta.add(btnBorraD);
 					
 					JLabel lblNombre = new JLabel("Nombre:");
@@ -400,14 +451,8 @@ import java.awt.event.MouseAdapter;
 					lblNombre.setBounds(33, 36, 81, 16);
 					menuInserta.add(lblNombre);
 					
-					JButton btnHomeShorCut_4 = new JButton("");
-					btnHomeShorCut_4.setToolTipText("Regresar a menu prinicipal");
-					btnHomeShorCut_4.setOpaque(false);
-					btnHomeShorCut_4.setContentAreaFilled(false);
-					btnHomeShorCut_4.setBounds(314, 353, 61, 53);
-					menuInserta.add(btnHomeShorCut_4);
-					
 					JTextArea tNis = new JTextArea();
+					tNis.setToolTipText("Ingrese el nombre del asegurado");
 					tNis.setOpaque(false);
 					tNis.setForeground(new Color(47, 79, 79));
 					tNis.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
@@ -422,7 +467,7 @@ import java.awt.event.MouseAdapter;
 					menuInserta.add(lblCedula);
 					
 					JTextArea tCedula = new JTextArea();
-					tCedula.setToolTipText("especifique el ingreso/salario");
+					tCedula.setToolTipText("ingrese la identificacion del asegurado");
 					tCedula.setOpaque(false);
 					tCedula.setForeground(new Color(47, 79, 79));
 					tCedula.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
@@ -440,18 +485,50 @@ import java.awt.event.MouseAdapter;
 					lblDireccion.setHorizontalAlignment(SwingConstants.CENTER);
 					lblDireccion.setForeground(new Color(47, 79, 79));
 					lblDireccion.setFont(new Font("Sitka Text", Font.BOLD, 15));
-					lblDireccion.setBounds(138, 227, 86, 29);
+					lblDireccion.setBounds(110, 221, 86, 29);
 					menuInserta.add(lblDireccion);
 					
-					JScrollPane scrollPane_2 = new JScrollPane();
-					scrollPane_2.setBounds(54, 261, 253, 91);
-					menuInserta.add(scrollPane_2);
+					JScrollPane sPDireccionAsegurado = new JScrollPane();
+					sPDireccionAsegurado.setBounds(33, 261, 253, 91);
+					menuInserta.add(sPDireccionAsegurado);
 					
-					JTextArea textArea = new JTextArea();
-					textArea.setFont(new Font("Palatino Linotype", Font.BOLD | Font.ITALIC, 14));
-					textArea.setLineWrap(true);
-					textArea.setWrapStyleWord(true);
-					scrollPane_2.setViewportView(textArea);
+					JTextArea tDireccionAsegurado = new JTextArea();
+					tDireccionAsegurado.setToolTipText("Especifique la direccion del asegurado para poder asistirle");
+					tDireccionAsegurado.setFont(new Font("Palatino Linotype", Font.BOLD | Font.ITALIC, 14));
+					tDireccionAsegurado.setLineWrap(true);
+					tDireccionAsegurado.setWrapStyleWord(true);
+					sPDireccionAsegurado.setViewportView(tDireccionAsegurado);
+					
+					JComboBox boxTipoServicio = new JComboBox();
+					boxTipoServicio.setFont(new Font("Sitka Text", Font.BOLD, 12));
+					boxTipoServicio.setModel(new DefaultComboBoxModel(new String[] {"Selecciona tipo de servicio", "Compras", "Pago de servicios publicos", "Visita medica"}));
+					boxTipoServicio.setBounds(337, 28, 246, 29);
+					menuInserta.add(boxTipoServicio);
+					
+					JPanel panelCompras = new JPanel();
+					panelCompras.setBounds(315, 81, 283, 290);
+					menuInserta.add(panelCompras);
+					panelCompras.setLayout(null);
+					
+					JComboBox boxTipoCompra = new JComboBox();
+					boxTipoCompra.setFont(new Font("Sitka Text", Font.BOLD, 12));
+					boxTipoCompra.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo de compra", "Supermercado", "Farmacia"}));
+					boxTipoCompra.setBounds(24, 22, 249, 22);
+					panelCompras.add(boxTipoCompra);
+					
+					JScrollPane sPDetalleCompra = new JScrollPane();
+					sPDetalleCompra.setBounds(24, 159, 234, 98);
+					panelCompras.add(sPDetalleCompra);
+					
+					JTextArea tDetalleCompra = new JTextArea();
+					tDetalleCompra.setToolTipText("Especifique detalle de compra");
+					sPDetalleCompra.setViewportView(tDetalleCompra);
+					
+					JLabel lblDetalleCompra = new JLabel("Detalle de compra");
+					lblDetalleCompra.setFont(new Font("Sitka Text", Font.BOLD, 14));
+					lblDetalleCompra.setHorizontalAlignment(SwingConstants.CENTER);
+					lblDetalleCompra.setBounds(41, 134, 203, 14);
+					panelCompras.add(lblDetalleCompra);
 			
 			menuMuestra = new JPanel();
 			menuMuestra.setBackground(SystemColor.activeCaption);
@@ -1084,7 +1161,7 @@ import java.awt.event.MouseAdapter;
 						
 			});
 			
-			JButton btnBorraDAc = new JButton("Borrar Datos");//PROBABLEMENTE ESTE BOTON SE DESECHARÃ
+			JButton btnBorraDAc = new JButton("Borrar Datos");//PROBABLEMENTE ESTE BOTON SE DESECHARÃƒÂ�
 			btnBorraDAc.setToolTipText("refresca el menu");
 			btnBorraDAc.setIcon(null);
 			btnBorraDAc.setFont(new Font("Dialog", Font.BOLD, 13));
