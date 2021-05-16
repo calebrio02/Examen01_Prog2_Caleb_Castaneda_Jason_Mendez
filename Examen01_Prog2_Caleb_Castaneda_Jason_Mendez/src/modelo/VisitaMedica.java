@@ -31,8 +31,8 @@ public class VisitaMedica extends Servicio {
 		String mensaje ="";
 		
 		 mensaje+="VISITA MEDICA \n\n"
-		 		+ "MOTIVO DE VISITA: ¢"+ getMotivo()+"\n"
-		 		+ "DETALLE: ¢"+getDetalle() +"\n\n";
+		 		+ "MOTIVO DE VISITA: "+ getMotivo()+"\n"
+		 		+ "DETALLE: "+getDetalle() +"\n\n";
 		
 		return mensaje;
 	}

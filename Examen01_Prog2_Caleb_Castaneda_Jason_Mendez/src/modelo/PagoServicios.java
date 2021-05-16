@@ -54,7 +54,8 @@ public class PagoServicios extends Servicio{
 		String mensaje ="";
 		
 		 mensaje+="PAGO DE SERVICIOS\n\n"
-		 		+ "SERVICIO A PAGAR: ¢"+ getServicioPagar()+"\n"
+		 		+ "SERVICIO A PAGAR: "+ getServicioPagar()+"\n"
+		 		+ "DETALLE: "+getDetalle()+"\n"
 		 		+ "MONTO: ¢"+getMonto() +"\n\n";
 		
 		return mensaje;

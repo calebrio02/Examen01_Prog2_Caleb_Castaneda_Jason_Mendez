@@ -42,8 +42,8 @@ public class Compras extends Servicio {
 		String mensaje ="";
 		
 		 mensaje+="COMPRAS \n\n"
-		 		+ "CATEGORIA: ¢"+ getTipoCompra()+"\n"
-		 		+ "DETALLE: ¢"+getDetalle() +"\n\n";
+		 		+ "CATEGORIA: "+ getTipoCompra()+"\n"
+		 		+ "DETALLE: "+getDetalle() +"\n\n";
 		
 		return mensaje;
 		

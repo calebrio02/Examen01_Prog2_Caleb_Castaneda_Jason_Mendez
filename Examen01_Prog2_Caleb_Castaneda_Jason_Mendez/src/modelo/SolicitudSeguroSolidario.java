@@ -98,9 +98,10 @@ public class SolicitudSeguroSolidario {
 		
 		
 		
-		mensaje= "FECHA/HORA DE SOLICITUD; " 
-				+ getFechaHoraSolicitud()
+		mensaje= "FECHA/HORA DE SOLICITUD: " 
+				+ getFechaHoraSolicitud()+"\n"
 				+ a.mostrar()
+				+"TIPO DE SOLICITUD: "
 				+ SaberTipoSolicitud(getNombreServicio());
 				
 		
