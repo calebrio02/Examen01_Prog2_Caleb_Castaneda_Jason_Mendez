@@ -70,7 +70,6 @@ import java.awt.event.MouseAdapter;
 	public class Menu extends JFrame {
 	
 		private JPanel contentPane;
-		private JPanel menuInserta;
 		private JPanel menuMuestra;
 		private JPanel BienvenidaAgente;
 		
@@ -108,23 +107,6 @@ import java.awt.event.MouseAdapter;
 		//////////////TXTPERSONA//////////////
 		JTextArea tNombre = new JTextArea();
 		JTextArea tIngreso = new JTextArea();
-		
-		/////////TXTSBASICOS/////
-		JTextArea tAgua = new JTextArea();
-		JTextArea tTransporte = new JTextArea();
-		JTextArea tLuz = new JTextArea();
-		JTextArea tCableinternet = new JTextArea();
-		
-		
-		//////TXTCOMIDA/////
-		JTextArea tCarniceria = new JTextArea();
-		JTextArea tSupermercado = new JTextArea();
-		JTextArea tVerduleria = new JTextArea();
-		
-		
-		//////TXTOCIO/////
-		JTextArea tSalidas = new JTextArea();
-		JTextArea tSuscripcion = new JTextArea();
 		
 		
 		///////////////ACTUALIZAR/////////////////
@@ -166,7 +148,7 @@ import java.awt.event.MouseAdapter;
 			setBackground(Color.DARK_GRAY);
 			setIconImage(Toolkit.getDefaultToolkit().getImage("\\\\Mac\\Home\\Downloads\\Basic_set\\Basic_set_Png\\Basic_set_Png\\home_48.png"));
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 737, 489);;;
+			setBounds(100, 100, 748, 487);;;
 			contentPane = new JPanel();
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
@@ -261,16 +243,16 @@ import java.awt.event.MouseAdapter;
 			
 			bienvenidaAsegurado.setLayout(null);
 			
-			JPanel panel = new JPanel();
-			panel.setBackground(Color.DARK_GRAY);
-			panel.setBounds(0, 0, 113, 454);
-			bienvenidaAsegurado.add(panel);
-			panel.setLayout(null);
+			JPanel panelMenuOpciones = new JPanel();
+			panelMenuOpciones.setBackground(Color.DARK_GRAY);
+			panelMenuOpciones.setBounds(0, 0, 113, 454);
+			bienvenidaAsegurado.add(panelMenuOpciones);
+			panelMenuOpciones.setLayout(null);
 			//btnMostrar.setIcon(new ImageIcon(Menu.class.getResource("/vista/iconsImages/monitor_16.png")));
 			
 			JButton btnInsertar = new JButton("Inserta");
 			btnInsertar.setBounds(0, 0, 113, 51);
-			panel.add(btnInsertar);
+			panelMenuOpciones.add(btnInsertar);
 			btnInsertar.setToolTipText("Agrega los gastos para este mes...");
 			btnInsertar.setHorizontalAlignment(SwingConstants.LEFT);
 			btnInsertar.setForeground(Color.WHITE);
@@ -301,7 +283,7 @@ import java.awt.event.MouseAdapter;
 			
 					JButton btnMostrar = new JButton("Mostrar");
 					btnMostrar.setBounds(0, 62, 113, 51);
-					panel.add(btnMostrar);
+					panelMenuOpciones.add(btnMostrar);
 					btnMostrar.setToolTipText("ver el resumen de todos los gastos registrados...");
 					btnMostrar.setHorizontalAlignment(SwingConstants.LEFT);
 					btnMostrar.setForeground(Color.WHITE);
@@ -323,7 +305,7 @@ import java.awt.event.MouseAdapter;
 					
 					JButton btnbusca = new JButton("Buscar");
 					btnbusca.setBounds(0, 124, 113, 51);
-					panel.add(btnbusca);
+					panelMenuOpciones.add(btnbusca);
 					btnbusca.setToolTipText("buscar en el registro alg\u00FAn gasto en especifico...");
 					btnbusca.setHorizontalAlignment(SwingConstants.LEFT);
 					//btnbusca.setIcon(new ImageIcon(Menu.class.getResource("/modelo/images/buscar.png")));
@@ -341,40 +323,11 @@ import java.awt.event.MouseAdapter;
 					
 					
 					btnbusca.setFont(new Font("SimSun", Font.BOLD, 15));
-					//btnSalir.setIcon(new ImageIcon(Menu.class.getResource("/vista/iconsImages/right_16.png")));
 					
-					JButton btnElimina = new JButton("Eliminar");
-					btnElimina.setBounds(0, 186, 113, 51);
-					panel.add(btnElimina);
-					btnElimina.setToolTipText("elimina uno o bien todos los gastos ya registrados");
-					btnElimina.setHorizontalAlignment(SwingConstants.LEFT);
-					btnElimina.setForeground(Color.WHITE);
-					btnElimina.setOpaque(false);
-					btnElimina.setBackground(new Color (0, 0, 0, 50));
-					btnElimina.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							CardLayout c = (CardLayout)(contentPane.getLayout());
-							c.show(contentPane, "t4");
-							tInfoEliminar.setText(lista.acumulaDatos());
-							
-						}
-					});
-					
-					btnElimina.setFont(new Font("SimSun", Font.BOLD, 15));
-					
-					
-					
-					JButton btnSalir = new JButton("Salir");
-					btnSalir.setBounds(0, 248, 113, 51);
-					panel.add(btnSalir);
-					btnSalir.setToolTipText("salir de la aplicacion!");
-					btnSalir.setHorizontalAlignment(SwingConstants.LEFT);
-					//btnSalir.setIcon(new ImageIcon(Menu.class.getResource("/modelo/images/salir.png")));
-					btnSalir.setForeground(Color.WHITE);
-					btnSalir.setOpaque(false);
-					btnSalir.setBackground(new Color (0, 0, 0, 50));
-					
-					btnSalir.addActionListener(new ActionListener() {
+					JButton bSalirProgramaAsegurado = new JButton("");
+					bSalirProgramaAsegurado.setBorder(null);
+					bSalirProgramaAsegurado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+					bSalirProgramaAsegurado.addActionListener(new ActionListener() {
 						
 						@Override
 						public void actionPerformed(ActionEvent e) {//FINALIZACION DEL PROGRAMA CONTROLADA
@@ -387,21 +340,118 @@ import java.awt.event.MouseAdapter;
 						}
 					});
 					
-					btnSalir.setFont(new Font("SimSun", Font.BOLD, 15));
 					
-					JButton bSalirSesionAsegurado = new JButton("");
-					bSalirSesionAsegurado.addActionListener(new ActionListener() {
+					bSalirProgramaAsegurado.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/VolverPrincipal48px.png")));
+					bSalirProgramaAsegurado.setToolTipText("Salir del programa");
+					bSalirProgramaAsegurado.setContentAreaFilled(false);
+					bSalirProgramaAsegurado.setBounds(29, 305, 44, 45);
+					panelMenuOpciones.add(bSalirProgramaAsegurado);
+					
+					JButton bBackToLogin = new JButton("");
+					bBackToLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+					bBackToLogin.setBorder(null);
+					bBackToLogin.setToolTipText("Salir del perfil \"Asegurado\", vuelve e inicia otra sesion");
+					bBackToLogin.setContentAreaFilled(false);
+					bBackToLogin.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/backToLogin48px.png")));
+					bBackToLogin.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							
 							bienvenidaAsegurado.setVisible(false);
-							
 						}
 					});
-					bSalirSesionAsegurado.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/VolverPrincipal48px.png")));
-					bSalirSesionAsegurado.setToolTipText("Volver a pantalla de inicio del programa, para iniciar otra sesion");
-					bSalirSesionAsegurado.setContentAreaFilled(false);
-					bSalirSesionAsegurado.setBounds(27, 326, 52, 44);
-					panel.add(bSalirSesionAsegurado);
+					bBackToLogin.setBounds(29, 232, 44, 51);
+					panelMenuOpciones.add(bBackToLogin);
+					
+					JPanel menuInserta = new JPanel();
+					menuInserta.setLayout(null);
+					menuInserta.setBackground(Color.LIGHT_GRAY);
+					menuInserta.setBounds(112, 0, 614, 447);
+					bienvenidaAsegurado.add(menuInserta);
+					
+					JTextArea tIngreso_1 = new JTextArea();
+					tIngreso_1.setToolTipText("especifique el ingreso/salario");
+					tIngreso_1.setOpaque(false);
+					tIngreso_1.setForeground(new Color(47, 79, 79));
+					tIngreso_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+					tIngreso_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+					tIngreso_1.setBounds(124, 66, 161, 21);
+					menuInserta.add(tIngreso_1);
+					
+					JLabel lblResidencia = new JLabel("Edad:");
+					lblResidencia.setForeground(new Color(47, 79, 79));
+					lblResidencia.setFont(new Font("Sitka Text", Font.BOLD, 15));
+					lblResidencia.setBounds(33, 62, 61, 29);
+					menuInserta.add(lblResidencia);
+					
+					JButton listo = new JButton("Listo!");
+					listo.setToolTipText("finalizar de agregar los datos");
+					listo.setFont(new Font("Dialog", Font.BOLD, 13));
+					listo.setBounds(314, 377, 109, 29);
+					menuInserta.add(listo);
+					
+					JButton btnBorraD = new JButton("Cancelar");
+					btnBorraD.setToolTipText("refresca el menu");
+					btnBorraD.setFont(new Font("Dialog", Font.BOLD, 13));
+					btnBorraD.setBounds(444, 377, 109, 29);
+					menuInserta.add(btnBorraD);
+					
+					JLabel lblNombre = new JLabel("Nombre:");
+					lblNombre.setForeground(new Color(47, 79, 79));
+					lblNombre.setFont(new Font("Sitka Text", Font.BOLD, 15));
+					lblNombre.setBounds(33, 36, 81, 16);
+					menuInserta.add(lblNombre);
+					
+					JButton btnHomeShorCut_4 = new JButton("");
+					btnHomeShorCut_4.setToolTipText("Regresar a menu prinicipal");
+					btnHomeShorCut_4.setOpaque(false);
+					btnHomeShorCut_4.setContentAreaFilled(false);
+					btnHomeShorCut_4.setBounds(314, 353, 61, 53);
+					menuInserta.add(btnHomeShorCut_4);
+					
+					JTextArea tNis = new JTextArea();
+					tNis.setOpaque(false);
+					tNis.setForeground(new Color(47, 79, 79));
+					tNis.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+					tNis.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+					tNis.setBounds(124, 17, 161, 21);
+					menuInserta.add(tNis);
+					
+					JLabel lblCedula = new JLabel("Cedula:");
+					lblCedula.setForeground(new Color(47, 79, 79));
+					lblCedula.setFont(new Font("Sitka Text", Font.BOLD, 15));
+					lblCedula.setBounds(33, 109, 61, 29);
+					menuInserta.add(lblCedula);
+					
+					JTextArea tCedula = new JTextArea();
+					tCedula.setToolTipText("especifique el ingreso/salario");
+					tCedula.setOpaque(false);
+					tCedula.setForeground(new Color(47, 79, 79));
+					tCedula.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+					tCedula.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+					tCedula.setBounds(124, 108, 161, 21);
+					menuInserta.add(tCedula);
+					
+					JComboBox comboBox = new JComboBox();
+					comboBox.setFont(new Font("Sitka Text", Font.BOLD, 12));
+					comboBox.setModel(new DefaultComboBoxModel(new String[] {"Elija categoria de poliza", "Individual", "Familiar"}));
+					comboBox.setBounds(33, 160, 253, 29);
+					menuInserta.add(comboBox);
+					
+					JLabel lblDireccion = new JLabel("Direccion:");
+					lblDireccion.setHorizontalAlignment(SwingConstants.CENTER);
+					lblDireccion.setForeground(new Color(47, 79, 79));
+					lblDireccion.setFont(new Font("Sitka Text", Font.BOLD, 15));
+					lblDireccion.setBounds(138, 227, 86, 29);
+					menuInserta.add(lblDireccion);
+					
+					JScrollPane scrollPane_2 = new JScrollPane();
+					scrollPane_2.setBounds(54, 261, 253, 91);
+					menuInserta.add(scrollPane_2);
+					
+					JTextArea textArea = new JTextArea();
+					textArea.setFont(new Font("Palatino Linotype", Font.BOLD | Font.ITALIC, 14));
+					textArea.setLineWrap(true);
+					textArea.setWrapStyleWord(true);
+					scrollPane_2.setViewportView(textArea);
 			
 			menuMuestra = new JPanel();
 			menuMuestra.setBackground(SystemColor.activeCaption);
@@ -450,1010 +500,6 @@ import java.awt.event.MouseAdapter;
 			//lblNewLabel_5.setIcon(new ImageIcon(Menu.class.getResource("/modelo/images/gradientMostrar.jpeg")));
 			lblNewLabel_5.setBounds(0, 0, 721, 450);
 			menuMuestra.add(lblNewLabel_5);
-			
-			
-			
-			menuInserta = new JPanel();
-			menuInserta.setBackground(Color.LIGHT_GRAY);
-			
-			
-			contentPane.add(menuInserta, "inserta");
-			menuInserta.setLayout(null);
-			
-			
-			
-			JLabel lblGastosDeSupermercado = new JLabel("Gastos de Comida:");
-			lblGastosDeSupermercado.setHorizontalAlignment(SwingConstants.CENTER);
-			lblGastosDeSupermercado.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(47, 79, 79)));
-			lblGastosDeSupermercado.setForeground(new Color(47, 79, 79));
-			lblGastosDeSupermercado.setFont(new Font("Sitka Text", Font.BOLD, 16));
-			lblGastosDeSupermercado.setBounds(492, 14, 223, 36);
-			menuInserta.add(lblGastosDeSupermercado);
-			
-			JLabel lblGastosDeOcio = new JLabel("Gastos de Ocio:");
-			lblGastosDeOcio.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(47, 79, 79)));
-			lblGastosDeOcio.setHorizontalAlignment(SwingConstants.CENTER);
-			lblGastosDeOcio.setForeground(new Color(47, 79, 79));
-			lblGastosDeOcio.setFont(new Font("Sitka Text", Font.BOLD, 16));
-			lblGastosDeOcio.setBounds(462, 191, 136, 36);
-			menuInserta.add(lblGastosDeOcio);
-			
-			JLabel lblGastosDeServicios = new JLabel("Gastos de Servicios Basicos:");
-			lblGastosDeServicios.setHorizontalAlignment(SwingConstants.CENTER);
-			lblGastosDeServicios.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(47, 79, 79)));
-			lblGastosDeServicios.setForeground(new Color(47, 79, 79));
-			lblGastosDeServicios.setFont(new Font("Sitka Text", Font.BOLD, 16));
-			lblGastosDeServicios.setBounds(180, 136, 237, 36);
-			menuInserta.add(lblGastosDeServicios);
-			
-			
-			tSalidas.setToolTipText("En relacion a gastos de ocio, ingresa el gasto de salidas");
-			tSalidas.setText("Ingrese gasto Salidas");
-			tSalidas.setOpaque(false);
-			tSalidas.setForeground(new Color(105, 105, 105));
-			tSalidas.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tSalidas.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tSalidas.setBounds(451, 306, 221, 21);
-			
-			////////////////////////////////////////////////////////////////////////////////////////////
-			
-			tSalidas.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tSalidas.getText().equalsIgnoreCase("ingrese gasto salidas")) {
-						tSalidas.setText("");
-			    	}
-					
-				}
-			});
-			
-			tSalidas.addKeyListener(new KeyAdapter() // SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR CUALQUIER ENTRADA DEL TECLADO
-			{
-				public void keyTyped(KeyEvent e)
-				{
-					
-					if(tSalidas.getText().equalsIgnoreCase("ingrese gasto salidas")) {
-						tSalidas.setText("");
-					}else if(e.getKeyCode()== KeyEvent.VK_TAB) {
-						tSalidas.setText("");
-					}
-				}
-			});
-			
-			
-			
-			tSalidas.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-			    {
-			    	public void keyTyped(KeyEvent e)
-			    	{
-			    		char caracter = e.getKeyChar();
-			    		
-			    		
-			    		if(((caracter < '0') ||
-			    				(caracter > '9')) &&
-			    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-			    		{
-			    			e.consume();  // ignorar el evento de teclado
-			    			
-			    		}
-			    	}
-			    });
-			
-			
-			
-			
-			tSalidas.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-		    	 
-		    	public void keyTyped(KeyEvent e)
-		    	 
-		    	{if (tSalidas.getText().length()== 6)
-		    	 
-		    	     e.consume();
-		    	}
-		    	 
-		    	public void keyPressed(KeyEvent arg0) {
-		    	}
-		    	 
-		    	public void keyReleased(KeyEvent arg0) {
-		    	}
-		    	});
-			
-			
-			
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			menuInserta.add(tSalidas);
-			
-			tSuscripcion.setToolTipText("En relacion a gastos de ocio, si usas servicios tales como: netflix, spotify...\r\ningresa el monto");
-			tSuscripcion.setText("Ingrese gasto Suscripciones");
-			tSuscripcion.setOpaque(false);
-			tSuscripcion.setForeground(new Color(105, 105, 105));
-			tSuscripcion.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tSuscripcion.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tSuscripcion.setBounds(451, 238, 274, 21);
-			
-			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-			
-			
-			tSuscripcion.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tSuscripcion.getText().equalsIgnoreCase("ingrese gasto suscripciones")) {
-						tSuscripcion.setText("");
-			    	}
-					
-				}
-			});
-			
-			tSuscripcion.addKeyListener(new KeyAdapter() // SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR CUALQUIER ENTRADA DEL TECLADO
-			{
-				public void keyTyped(KeyEvent e)
-				{
-					
-					if(tSuscripcion.getText().equalsIgnoreCase("ingrese gasto suscripciones")) {
-						tSuscripcion.setText("");
-					}else if(e.getKeyCode()== KeyEvent.VK_TAB) {
-						tSuscripcion.setText("");
-					}
-				}
-			});
-			
-			
-			
-			tSuscripcion.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-			    {
-			    	public void keyTyped(KeyEvent e)
-			    	{
-			    		char caracter = e.getKeyChar();
-			    		
-			    		
-			    		if(((caracter < '0') ||
-			    				(caracter > '9')) &&
-			    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-			    		{
-			    			e.consume();  // ignorar el evento de teclado
-			    			
-			    		}
-			    	}
-			    });
-			
-			
-			
-			
-			tSuscripcion.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-		    	 
-		    	public void keyTyped(KeyEvent e)
-		    	 
-		    	{if (tSuscripcion.getText().length()== 6)
-		    	 
-		    	     e.consume();
-		    	}
-		    	 
-		    	public void keyPressed(KeyEvent arg0) {
-		    	}
-		    	 
-		    	public void keyReleased(KeyEvent arg0) {
-		    	}
-		    	});
-			
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-			
-			
-			
-			
-			menuInserta.add(tSuscripcion);
-			tVerduleria.setToolTipText("ingrese gasto verduleria");
-			
-			
-			tVerduleria.setBounds(451, 154, 221, 21);
-			menuInserta.add(tVerduleria);
-			
-			
-			
-			
-			
-			tVerduleria.setText("Ingrese gasto Verduleria");
-			tVerduleria.setOpaque(false);
-			tVerduleria.setForeground(new Color(105, 105, 105));
-			tVerduleria.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tVerduleria.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			
-			
-			
-			
-			tVerduleria.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tVerduleria.getText().equalsIgnoreCase("ingrese gasto verduleria")) {
-						tVerduleria.setText("");
-			    	}
-					
-				}
-			});
-			
-			
-			tVerduleria.addKeyListener(new KeyAdapter()
-		    {
-		    	public void keyTyped(KeyEvent e)
-		    	{
-		    		char caracter = e.getKeyChar();
-		    		
-		    		// Verificar si la tecla pulsada no es un digito
-		    		if(((caracter < '0') ||
-		    				(caracter > '9')) &&
-		    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-		    		{
-		    			e.consume();  // ignorar el evento de teclado
-		    			//lista.mensajeTemporizado("Ingrese solo numeros", 1000); 	//HALAR ESTE MENSAJE DESDE LISTA PARA PODER USARLO
-		    		}
-		    	}
-		    });
-			
-				tVerduleria.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-	    	 
-	    	public void keyTyped(KeyEvent e)
-	    	 
-	    	{if (tVerduleria.getText().length()== 6)
-	    	 
-	    	     e.consume();
-	    	}
-	    	 
-	    	public void keyPressed(KeyEvent arg0) {
-	    	}
-	    	 
-	    	public void keyReleased(KeyEvent arg0) {
-	    	}
-	    	});
-			tSupermercado.setToolTipText("ingrese gasto supermercado");
-			tSupermercado.setBounds(479, 79, 221, 21);
-			menuInserta.add(tSupermercado);
-			
-			
-			
-			tSupermercado.setOpaque(false);
-			tSupermercado.setText("Ingrese gasto Supermercado");
-			tSupermercado.setForeground(new Color(105, 105, 105));
-			tSupermercado.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tSupermercado.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			
-			tSupermercado.addKeyListener(new KeyAdapter() { //PARA UTILIZAR TAP AL MOMENTO DE NAVEGAR POR LOS TEXT'SAREAS
-				@Override
-				public void keyPressed(KeyEvent e) {
-					 if (e.getKeyCode() == KeyEvent.VK_TAB) {
-		                    if (e.getModifiersEx() > 0) {
-		                    	tSupermercado.transferFocusBackward();
-		                    } else {
-		                    	
-		                    	tCarniceria.setText("");
-		                    	tSupermercado.transferFocus();
-		                    	
-		                    	
-		                    }
-		                    e.consume();
-		                }
-		            }
-		        });
-			
-			
-			tSupermercado.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tSupermercado.getText().equalsIgnoreCase("ingrese gasto supermercado")) {
-			    		tSupermercado.setText("");
-			    	}
-					
-				}
-			});
-			
-			tSupermercado.addKeyListener(new KeyAdapter() // SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR CUALQUIER ENTRADA DEL TECLADO
-			{
-				public void keyTyped(KeyEvent e)
-				{
-					
-					if(tSupermercado.getText().equalsIgnoreCase("ingrese gasto supermercado")) {
-						tSupermercado.setText("");
-					}else if(e.getKeyCode()== KeyEvent.VK_TAB) {
-							tSupermercado.setText("");
-					}
-				}
-			});
-			
-			
-			
-			tSupermercado.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-			    {
-			    	public void keyTyped(KeyEvent e)
-			    	{
-			    		char caracter = e.getKeyChar();
-			    		
-			    		
-			    		if(((caracter < '0') ||
-			    				(caracter > '9')) &&
-			    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-			    		{
-			    			e.consume();  // ignorar el evento de teclado
-			    			
-			    		}
-			    	}
-			    });
-			
-			
-			
-			
-			tSupermercado.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-		    	 
-		    	public void keyTyped(KeyEvent e)
-		    	 
-		    	{if (tSupermercado.getText().length()== 6)
-		    	 
-		    	     e.consume();
-		    	}
-		    	 
-		    	public void keyPressed(KeyEvent arg0) {
-		    	}
-		    	 
-		    	public void keyReleased(KeyEvent arg0) {
-		    	}
-		    	});
-			tCarniceria.setToolTipText("ingrese gasto carniceria");
-			
-			
-			tCarniceria.setBounds(451, 111, 221, 21);
-			menuInserta.add(tCarniceria);
-			
-			
-			tCarniceria.setText("Ingrese gasto Carniceria");
-			tCarniceria.setOpaque(false);
-			tCarniceria.setForeground(new Color(105, 105, 105));
-			tCarniceria.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tCarniceria.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			
-			
-			tCarniceria.addKeyListener(new KeyAdapter() { //PARA UTILIZAR TAP AL MOMENTO DE NAVEGAR POR LOS TEXT'SAREAS
-				@Override
-				public void keyPressed(KeyEvent e) {
-					 if (e.getKeyCode() == KeyEvent.VK_TAB) {
-		                    if (e.getModifiersEx() > 0) {
-		                    	tCarniceria.transferFocusBackward();
-		                    } else {
-		                    	
-		                    	tVerduleria.setText("");
-		                    	tCarniceria.transferFocus();
-		                    	
-		                    	
-		                    }
-		                    e.consume();
-		                }
-		            }
-		        });
-			
-			
-			
-			tCarniceria.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tCarniceria.getText().equalsIgnoreCase("ingrese gasto carniceria")) {
-						tCarniceria.setText("");
-			    	}
-					
-				}
-			});
-			
-			tCarniceria.addKeyListener(new KeyAdapter() // SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR CUALQUIER ENTRADA DEL TECLADO
-			{
-				public void keyTyped(KeyEvent e)
-				{
-					
-					if(tCarniceria.getText().equalsIgnoreCase("ingrese gasto carniceria")) {
-						tCarniceria.setText("");
-					}
-				}
-			});
-			
-						
-						tCarniceria.addKeyListener(new KeyAdapter()
-					    {
-					    	public void keyTyped(KeyEvent e)
-					    	{
-					    		char caracter = e.getKeyChar();
-					    		
-					    		// Verificar si la tecla pulsada no es un digito
-					    		if(((caracter < '0') ||
-					    				(caracter > '9')) &&
-					    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-					    		{
-					    			e.consume();  // ignorar el evento de teclado
-					    			
-					    		}
-					    	}
-					    });
-						
-							tCarniceria.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-	    	 
-	    	public void keyTyped(KeyEvent e)
-	    	 
-	    	{if (tCarniceria.getText().length()== 6)
-	    	 
-	    	     e.consume();
-	    	}
-	    	 
-	    	public void keyPressed(KeyEvent arg0) {
-	    	}
-	    	 
-	    	public void keyReleased(KeyEvent arg0) {
-	    	}
-	    	});
-			tAgua.setToolTipText("ingrese gasto agua");
-			
-			
-			
-	////////////////////////////////////////////////////////////////////////////////////////////////		
-			tAgua.setBounds(180, 183, 221, 21);
-			tAgua.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tAgua.getText().equalsIgnoreCase("ingrese gasto agua")) {
-						tAgua.setText("");
-			    	}
-					
-				}
-			});
-			
-			tAgua.addKeyListener(new KeyAdapter() // SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR CUALQUIER ENTRADA DEL TECLADO
-			{
-				public void keyTyped(KeyEvent e)
-				{
-					
-					if(tAgua.getText().equalsIgnoreCase("ingrese gasto agua")) {
-						tAgua.setText("");
-					}else if(e.getKeyCode()== KeyEvent.VK_TAB) {
-						tAgua.setText("");
-					}
-				}
-			});
-			
-			
-			
-			tAgua.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-			    {
-			    	public void keyTyped(KeyEvent e)
-			    	{
-			    		char caracter = e.getKeyChar();
-			    		
-			    		
-			    		if(((caracter < '0') ||
-			    				(caracter > '9')) &&
-			    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-			    		{
-			    			e.consume();  // ignorar el evento de teclado
-			    			
-			    		}
-			    	}
-			    });
-			
-			
-			
-			
-			tAgua.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-		    	 
-		    	public void keyTyped(KeyEvent e)
-		    	 
-		    	{if (tAgua.getText().length()== 6)
-		    	 
-		    	     e.consume();
-		    	}
-		    	 
-		    	public void keyPressed(KeyEvent arg0) {
-		    	}
-		    	 
-		    	public void keyReleased(KeyEvent arg0) {
-		    	}
-		    	});
-			
-			
-			
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-			
-			
-			
-			
-			menuInserta.add(tAgua);
-			tAgua.setText("Ingrese gasto Agua");
-			tAgua.setOpaque(false);
-			tAgua.setForeground(new Color(105, 105, 105));
-			tAgua.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tAgua.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tTransporte.setToolTipText("ingrese gasto transporte");
-		
-			
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			tTransporte.setBounds(180, 321, 221, 21);
-			tTransporte.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tTransporte.getText().equalsIgnoreCase("ingrese gasto transporte")) {
-						tTransporte.setText("");
-			    	}
-					
-				}
-			});
-			
-			tTransporte.addKeyListener(new KeyAdapter() // SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR CUALQUIER ENTRADA DEL TECLADO
-			{
-				public void keyTyped(KeyEvent e)
-				{
-					
-					if(tTransporte.getText().equalsIgnoreCase("ingrese gasto transporte")) {
-						tTransporte.setText("");
-					}else if(e.getKeyCode()== KeyEvent.VK_TAB) {
-						tTransporte.setText("");
-					}
-				}
-			});
-			
-			
-			
-			tTransporte.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-			    {
-			    	public void keyTyped(KeyEvent e)
-			    	{
-			    		char caracter = e.getKeyChar();
-			    		
-			    		
-			    		if(((caracter < '0') ||
-			    				(caracter > '9')) &&
-			    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-			    		{
-			    			e.consume();  // ignorar el evento de teclado
-			    			
-			    		}
-			    	}
-			    });
-			
-			
-			
-			
-			tTransporte.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-		    	 
-		    	public void keyTyped(KeyEvent e)
-		    	 
-		    	{if (tTransporte.getText().length()== 6)
-		    	 
-		    	     e.consume();
-		    	}
-		    	 
-		    	public void keyPressed(KeyEvent arg0) {
-		    	}
-		    	 
-		    	public void keyReleased(KeyEvent arg0) {
-		    	}
-		    	});
-			
-			
-			
-			
-			
-			
-			
-			menuInserta.add(tTransporte);
-			tTransporte.setText("Ingrese gasto Transporte");
-			tTransporte.setOpaque(false);
-			tTransporte.setForeground(new Color(105, 105, 105));
-			tTransporte.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tTransporte.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tLuz.setToolTipText("ingrese gasto luz");
-			
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-			
-			
-			tLuz.setBounds(180, 225, 221, 21);
-			
-			tLuz.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tLuz.getText().equalsIgnoreCase("ingrese gasto luz")) {
-						tLuz.setText("");
-			    	}
-					
-				}
-			});
-			
-			tLuz.addKeyListener(new KeyAdapter() // SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR CUALQUIER ENTRADA DEL TECLADO
-			{
-				public void keyTyped(KeyEvent e)
-				{
-					
-					if(tLuz.getText().equalsIgnoreCase("ingrese gasto luz")) {
-						tLuz.setText("");
-					}else if(e.getKeyCode()== KeyEvent.VK_TAB) {
-						tLuz.setText("");
-					}
-				}
-			});
-			
-			
-			
-			tLuz.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-			    {
-			    	public void keyTyped(KeyEvent e)
-			    	{
-			    		char caracter = e.getKeyChar();
-			    		
-			    		
-			    		if(((caracter < '0') ||
-			    				(caracter > '9')) &&
-			    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-			    		{
-			    			e.consume();  // ignorar el evento de teclado
-			    			//lista.mensajeTemporizado("Ingrese solo numeros", 1000); 	//HALAR ESTE MENSAJE DESDE LISTA PARA PODER USARLO
-			    		}
-			    	}
-			    });
-			
-			
-			
-			
-			tLuz.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-		    	 
-		    	public void keyTyped(KeyEvent e)
-		    	 
-		    	{if (tLuz.getText().length()== 6)
-		    	 
-		    	     e.consume();
-		    	}
-		    	 
-		    	public void keyPressed(KeyEvent arg0) {
-		    	}
-		    	 
-		    	public void keyReleased(KeyEvent arg0) {
-		    	}
-		    	});
-			
-			
-			
-			
-			
-			
-			menuInserta.add(tLuz);
-			tLuz.setText("Ingrese gasto Luz");
-			tLuz.setOpaque(false);
-			tLuz.setForeground(new Color(105, 105, 105));
-			tLuz.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tLuz.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tCableinternet.setToolTipText("ingrese gasto cable-internet");
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-			
-			
-			tCableinternet.setBounds(180, 270, 221, 21);
-			
-			tCableinternet.addMouseListener(new MouseAdapter() {// SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR HACER CLICK
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					if(tCableinternet.getText().equalsIgnoreCase("ingrese gasto cable-internet")) {
-						tCableinternet.setText("");
-			    	}
-					
-				}
-			});
-			
-			tCableinternet.addKeyListener(new KeyAdapter() // SE BORRA EL MENSAJE GUIA DEL TXT AREA PARA INGRESAR EL VALOR PERTINENTE POR CUALQUIER ENTRADA DEL TECLADO
-			{
-				public void keyTyped(KeyEvent e)
-				{
-					
-					if(tCableinternet.getText().equalsIgnoreCase("ingrese gasto cable-internet")) {
-						tCableinternet.setText("");
-					}else if(e.getKeyCode()== KeyEvent.VK_TAB) {
-						tCableinternet.setText("");
-					}
-				}
-			});
-			
-			
-			
-			tCableinternet.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-			    {
-			    	public void keyTyped(KeyEvent e)
-			    	{
-			    		char caracter = e.getKeyChar();
-			    		
-			    		
-			    		if(((caracter < '0') ||
-			    				(caracter > '9')) &&
-			    				(caracter != '\b' /*corresponde a BACK_SPACE*/))
-			    		{
-			    			e.consume();  // ignorar el evento de teclado
-			    			//lista.mensajeTemporizado("Ingrese solo numeros", 1000); 	//HALAR ESTE MENSAJE DESDE LISTA PARA PODER USARLO
-			    		}
-			    	}
-			    });
-			
-			
-			
-			
-			tCableinternet.addKeyListener(new KeyListener(){ //PARA LIMITAR QUE USUARIO NO INGRESE UN GASTO MAYOR A 6 CIFRAS O DIGITOS
-		    	 
-		    	public void keyTyped(KeyEvent e)
-		    	 
-		    	{if (tCableinternet.getText().length()== 6)
-		    	 
-		    	     e.consume();
-		    	}
-		    	 
-		    	public void keyPressed(KeyEvent arg0) {
-		    	}
-		    	 
-		    	public void keyReleased(KeyEvent arg0) {
-		    	}
-		    	});
-			
-			
-			
-			
-			
-			menuInserta.add(tCableinternet);
-			tCableinternet.setText("Ingrese gasto Cable-Internet");
-			tCableinternet.setOpaque(false);
-			tCableinternet.setForeground(new Color(105, 105, 105));
-			tCableinternet.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tCableinternet.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-			JTextArea tIngreso = new JTextArea();
-			tIngreso.setToolTipText("especifique el ingreso/salario");
-			tIngreso.setOpaque(false);
-			tIngreso.setForeground(new Color(47, 79, 79));
-			tIngreso.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tIngreso.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tIngreso.setBounds(240, 69, 161, 21);
-			menuInserta.add(tIngreso);
-			
-			JLabel lblResidencia = new JLabel("Edad");
-			lblResidencia.setForeground(new Color(47, 79, 79));
-			lblResidencia.setFont(new Font("Sitka Text", Font.BOLD, 15));
-			lblResidencia.setBounds(149, 65, 61, 29);
-			menuInserta.add(lblResidencia);
-			
-			JButton listo = new JButton("Listo!");
-			
-			listo.setSelectedIcon(new ImageIcon("\\\\Mac\\Home\\Downloads\\Basic_set\\Basic_set_Png\\Basic_set_Png\\tick_16.png"));
-			listo.setToolTipText("finalizar de agregar los datos");
-			listo.setFont(new Font("Dialog", Font.BOLD, 13));
-			listo.setBounds(463, 353, 122, 29);
-			
-			listo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					if(tNombre.getText().isEmpty()) {
-						lista.mensajeTemporizado("Agregue su nombre", 1000);
-						
-					
-					
-						 
-					}else {
-							
-						
-						
-						
-						
-					s = new SolicitudSeguroSolidario();
-						
-							indiceModificar=+1;
-							
-							
-							int agua=0;
-							int luz=0;
-							int cInternet=0;
-							int transporte=0;
-							int supermercado=0;
-							int carniceria=0;
-							int verduleria=0;
-							int suscripcion=0;
-							int salidas=0;
-						
-							if(tAgua.getText().equalsIgnoreCase("ingrese gasto Agua")||tAgua.getText().equalsIgnoreCase("")) {
-								
-								//s.sb.setAgua(0);
-								
-							}else {
-								agua = Integer.parseInt(tAgua.getText());
-							}
-							if(tLuz.getText().equalsIgnoreCase("ingrese gasto luz")||tLuz.getText().equalsIgnoreCase("")){
-								//s.sb.setLuz(0);
-							
-							}else {
-								
-								 luz = Integer.parseInt(tLuz.getText());
-							}
-							
-								if(tCableinternet.getText().equalsIgnoreCase("ingrese gasto cable-internet")||tCableinternet.getText().equalsIgnoreCase("")){
-								
-							//	s.sb.setCableInternet(0);
-								
-							}else {
-								cInternet = Integer.parseInt(tCableinternet.getText());
-							}
-								if(tTransporte.getText().equalsIgnoreCase("ingrese gasto transporte")||tTransporte.getText().equalsIgnoreCase("")) {
-								
-								//s.sb.setTransporte(0);
-								
-							}else {
-								transporte = Integer.parseInt(tTransporte.getText());
-							}
-								
-								
-								if(tSupermercado.getText().equalsIgnoreCase("ingrese gasto supermercado")||tSupermercado.getText().equalsIgnoreCase("")) {
-								//s.comida.setSupermercado(0);
-							}else {
-								supermercado = Integer.parseInt(tSupermercado.getText());
-							}
-								
-								if (tCarniceria.getText().equalsIgnoreCase("ingrese gasto carniceria")||tCarniceria.getText().equalsIgnoreCase("")) {
-							//	s.comida.setCarniceria(0);
-								
-							}else {
-								carniceria = Integer.parseInt(tCarniceria.getText());
-							}
-								if(tVerduleria.getText().equalsIgnoreCase("ingrese gasto verduleria")||tVerduleria.getText().equalsIgnoreCase("")) {
-							//	s.comida.setVerduleria(0);
-								
-							}else {
-								verduleria = Integer.parseInt(tVerduleria.getText());
-							}
-								if(tSuscripcion.getText().equalsIgnoreCase("ingrese gasto suscripciones")||tSuscripcion.getText().equalsIgnoreCase("")) {
-							//	s.ocio.setStreaming(0);
-								
-							}else {
-								suscripcion = Integer.parseInt(tSuscripcion.getText());
-							}
-								if(tSalidas.getText().equalsIgnoreCase("ingrese gasto salidas")||tSalidas.getText().equalsIgnoreCase("")) {
-								
-							//	s.ocio.setSalidas(0);
-							
-							}else {
-								salidas = Integer.parseInt(tSalidas.getText());
-							}
-							
-								
-						//	s.ingresaP(tNombre.getText(),Integer.parseInt(tIngreso.getText()));
-						//	s.ingresaSB(agua, luz, cInternet, transporte);
-						//	s.ingresaC(supermercado, carniceria, verduleria);
-						//	s.ingresaO(suscripcion, salidas);
-							
-							
-						
-							
-						//	s.setIndiceGuia(indiceModificar);
-							
-							
-							lista.insertar(s);
-							
-							lista.mensajeTemporizado("Datos agregados!", 1200);
-							
-							
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-							
-							tNombre.setText("");
-							tIngreso.setText("");
-							
-							tAgua.setText("Ingrese gasto Agua");
-							tLuz.setText("Ingrese gasto Luz");
-							tCableinternet.setText("Ingrese gasto Cable-Internet");
-							tTransporte.setText("Ingrese gasto Transporte");
-
-							tSupermercado.setText("Ingrese gasto Supermercado");
-							tCarniceria.setText("Ingrese gasto Carniceria");
-							tVerduleria.setText("Ingrese gasto Verduleria");
-							
-							tSuscripcion.setText("Ingrese gasto Suscripciones");
-							tSalidas.setText("Ingrese gasto Salidas");
-								
-								
-								
-						}
-				}
-						
-			});
-			
-			
-			menuInserta.add(listo);
-			
-			
-			JButton btnBorraD = new JButton("Borrar Datos");//PROBABLEMENTE ESTE BOTON SE DESECHAR¡
-			btnBorraD.setToolTipText("refresca el menu");
-			btnBorraD.setIcon(null);
-			btnBorraD.setFont(new Font("Dialog", Font.BOLD, 13));
-			btnBorraD.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-					
-					
-					tNombre.setText("");
-					tIngreso.setText("");
-					
-					tAgua.setText("Ingrese gasto Agua");
-					tLuz.setText("Ingrese gasto Luz");
-					tCableinternet.setText("Ingrese gasto Cable-Internet");
-					tTransporte.setText("Ingrese gasto Transporte");
-
-					tSupermercado.setText("Ingrese gasto Supermercado");
-					tCarniceria.setText("Ingrese gasto Carniceria");
-					tVerduleria.setText("Ingrese gasto Verduleria");
-					
-					tSuscripcion.setText("Ingrese gasto Suscripciones");
-					tSalidas.setText("Ingrese gasto Salidas");
-					
-					
-					
-				}
-			});
-			btnBorraD.setBounds(595, 353, 129, 29);
-			
-			menuInserta.add(btnBorraD);
-			
-			JLabel lblNombre = new JLabel("Nombre:");
-			lblNombre.setForeground(new Color(47, 79, 79));
-			lblNombre.setFont(new Font("Sitka Text", Font.BOLD, 15));
-			lblNombre.setBounds(149, 39, 81, 16);
-			menuInserta.add(lblNombre);
-			
-			
-			
-			 btnHomeShorCut = new JButton("");
-			 btnHomeShorCut.setToolTipText("Regresar a menu prinicipal");
-			 btnHomeShorCut.setOpaque(false);
-			btnHomeShorCut.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					menuInserta.setVisible(false);
-					bienvenidaAsegurado.setVisible(true);
-				
-					
-					
-				}
-			});
-			btnHomeShorCut.setContentAreaFilled(false);
-			//btnHomeShorCut.setIcon(new ImageIcon(Menu.class.getResource("/modelo/images/home.png")));
-			btnHomeShorCut.setBounds(314, 353, 61, 53);
-			menuInserta.add(btnHomeShorCut);
-			
-			JTextArea tNis = new JTextArea();
-			tNis.setOpaque(false);
-			tNis.setForeground(new Color(47, 79, 79));
-			tNis.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tNis.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tNis.setBounds(240, 20, 161, 21);
-			menuInserta.add(tNis);
-			
-			JTextArea txtrSupermercado_1 = new JTextArea();
-			txtrSupermercado_1.setText("Ingrese gasto Supermercado");
-			txtrSupermercado_1.setOpaque(false);
-			txtrSupermercado_1.setForeground(Color.LIGHT_GRAY);
-			txtrSupermercado_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			txtrSupermercado_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			txtrSupermercado_1.setBounds(451, 255, 221, 21);
-			menuInserta.add(txtrSupermercado_1);
 			
 			
 			
@@ -2029,17 +1075,7 @@ import java.awt.event.MouseAdapter;
 							tNombre.setText("");
 							tIngreso.setText("");
 							
-							tAgua.setText("Ingrese gasto Agua");
-							tLuz.setText("Ingrese gasto Luz");
-							tCableinternet.setText("Ingrese gasto Cable-Internet");
-							tTransporte.setText("Ingrese gasto Transporte");
-
-							tSupermercado.setText("Ingrese gasto Supermercado");
-							tCarniceria.setText("Ingrese gasto Carniceria");
-							tVerduleria.setText("Ingrese gasto Verduleria");
 							
-							tSuscripcion.setText("Ingrese gasto Suscripciones");
-							tSalidas.setText("Ingrese gasto Salidas");
 								
 							tArchivadasAc.setText(lista.acumulaDatos());
 								
@@ -2048,7 +1084,7 @@ import java.awt.event.MouseAdapter;
 						
 			});
 			
-			JButton btnBorraDAc = new JButton("Borrar Datos");//PROBABLEMENTE ESTE BOTON SE DESECHAR¡
+			JButton btnBorraDAc = new JButton("Borrar Datos");//PROBABLEMENTE ESTE BOTON SE DESECHAR√É¬Å
 			btnBorraDAc.setToolTipText("refresca el menu");
 			btnBorraDAc.setIcon(null);
 			btnBorraDAc.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -2060,17 +1096,7 @@ import java.awt.event.MouseAdapter;
 					tNombreAc.setText("");
 					tIngresoAc.setText("");
 					
-					tAgua.setText("Ingrese gasto Agua");
-					tLuz.setText("Ingrese gasto Luz");
-					tCableinternet.setText("Ingrese gasto Cable-Internet");
-					tTransporte.setText("Ingrese gasto Transporte");
-
-					tSupermercado.setText("Ingrese gasto Supermercado");
-					tCarniceria.setText("Ingrese gasto Carniceria");
-					tVerduleria.setText("Ingrese gasto Verduleria");
 					
-					tSuscripcion.setText("Ingrese gasto Suscripciones");
-					tSalidas.setText("Ingrese gasto Salidas");
 					
 					
 					
@@ -2134,28 +1160,36 @@ import java.awt.event.MouseAdapter;
 			btnElimina_1.setFont(new Font("SimSun", Font.BOLD, 15));
 			btnElimina_1.setBackground(new Color(0, 0, 0, 50));
 			
-			JButton btnSalir_1 = new JButton("Salir");
-			btnSalir_1.setBounds(0, 158, 123, 51);
-			panelBotonesMenuAgente.add(btnSalir_1);
-			btnSalir_1.setToolTipText("salir de la aplicacion!");
-			btnSalir_1.setOpaque(false);
-			btnSalir_1.setHorizontalAlignment(SwingConstants.LEFT);
-			btnSalir_1.setForeground(Color.WHITE);
-			btnSalir_1.setFont(new Font("SimSun", Font.BOLD, 15));
-			btnSalir_1.setBackground(new Color(0, 0, 0, 50));
-			
 			JButton bSalirSesionAgente = new JButton("");
-			bSalirSesionAgente.setToolTipText("Volver a pantalla de inicio del programa, para iniciar otra sesion");
+			bSalirSesionAgente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			bSalirSesionAgente.setBorder(null);
 			bSalirSesionAgente.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					BienvenidaAgente.setVisible(false);
 					
 				}
 			});
+			
+			bSalirSesionAgente.setToolTipText("Salir del programa");
+			
 			bSalirSesionAgente.setContentAreaFilled(false);
 			bSalirSesionAgente.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/VolverPrincipal48px.png")));
-			bSalirSesionAgente.setBounds(30, 291, 52, 44);
+			bSalirSesionAgente.setBounds(33, 337, 52, 44);
 			panelBotonesMenuAgente.add(bSalirSesionAgente);
+			
+			JButton bBackToLoginAgente = new JButton("");
+			bBackToLoginAgente.setToolTipText("Salir del perfil \"Agente\", vuelve e inicia otra sesion");
+			bBackToLoginAgente.setBorder(null);
+			bBackToLoginAgente.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					BienvenidaAgente.setVisible(false);
+				}
+			});
+			bBackToLoginAgente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			bBackToLoginAgente.setContentAreaFilled(false);
+			bBackToLoginAgente.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/backToLogin48px.png")));
+			bBackToLoginAgente.setBounds(33, 248, 52, 44);
+			panelBotonesMenuAgente.add(bBackToLoginAgente);
 			
 			//
 		}
