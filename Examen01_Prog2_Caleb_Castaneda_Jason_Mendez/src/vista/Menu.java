@@ -115,6 +115,7 @@ import java.awt.event.MouseAdapter;
 		private JTextArea tDetalleVisita;
 		private JTextArea tDetallePagoServicio;
 		private JTextArea tNumeroPoliza;
+		private JTextArea tMonto;
 		//ComboBox///
 		private JComboBox boxTipoCompra;
 		private JComboBox boxEspecialidadMedica;
@@ -382,11 +383,43 @@ import java.awt.event.MouseAdapter;
 					menuInserta.setBounds(112, 0, 624, 447);
 					bienvenidaAsegurado.add(menuInserta);
 					
-					panelPagoServicios = new JPanel();
-					panelPagoServicios.setVisible(false);
-					
 					panelCompras = new JPanel();
 					panelCompras.setVisible(false);
+					
+					panelPagoServicios = new JPanel();
+					panelPagoServicios.setVisible(false);
+					panelPagoServicios.setBounds(314, 81, 283, 290);
+					menuInserta.add(panelPagoServicios);
+					panelPagoServicios.setLayout(null);
+					
+					boxTipoPagoServicio = new JComboBox();
+					boxTipoPagoServicio.setFont(new Font("Sitka Text", Font.BOLD, 12));
+					boxTipoPagoServicio.setModel(new DefaultComboBoxModel(new String[] {" Tipo de servicio a pagar", "Publico", "Municipal"}));
+					boxTipoPagoServicio.setToolTipText("Seleccione el tipo de servicio a pagar");
+					boxTipoPagoServicio.setBounds(26, 11, 236, 27);
+					panelPagoServicios.add(boxTipoPagoServicio);
+					
+					JScrollPane sPDetallePagoServicio = new JScrollPane();
+					sPDetallePagoServicio.setBounds(26, 109, 236, 34);
+					panelPagoServicios.add(sPDetallePagoServicio);
+					
+					tDetallePagoServicio = new JTextArea();
+					sPDetallePagoServicio.setViewportView(tDetallePagoServicio);
+					
+					JLabel lblNewLabel_1 = new JLabel("Especifica servicio");
+					lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
+					lblNewLabel_1.setBounds(26, 79, 236, 19);
+					panelPagoServicios.add(lblNewLabel_1);
+					
+					tMonto = new JTextArea();
+					tMonto.setText("Monto");
+					tMonto.setToolTipText("ingrese la identificacion del asegurado");
+					tMonto.setOpaque(false);
+					tMonto.setForeground(new Color(47, 79, 79));
+					tMonto.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+					tMonto.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+					tMonto.setBounds(26, 195, 161, 21);
+					panelPagoServicios.add(tMonto);
 					panelCompras.setBounds(315, 81, 283, 290);
 					menuInserta.add(panelCompras);
 					panelCompras.setLayout(null);
@@ -437,28 +470,6 @@ import java.awt.event.MouseAdapter;
 					tDetalleVisita = new JTextArea();
 					tDetalleVisita.setToolTipText("Especifique el motivo de su visita medica");
 					sPDetalleMotivoVisita.setViewportView(tDetalleVisita);
-					panelPagoServicios.setBounds(314, 81, 283, 290);
-					menuInserta.add(panelPagoServicios);
-					panelPagoServicios.setLayout(null);
-					
-					boxTipoPagoServicio = new JComboBox();
-					boxTipoPagoServicio.setFont(new Font("Sitka Text", Font.BOLD, 12));
-					boxTipoPagoServicio.setModel(new DefaultComboBoxModel(new String[] {" Tipo de servicio a pagar", "Publico", "Municipal"}));
-					boxTipoPagoServicio.setToolTipText("Seleccione el tipo de servicio a pagar");
-					boxTipoPagoServicio.setBounds(26, 11, 236, 27);
-					panelPagoServicios.add(boxTipoPagoServicio);
-					
-					JScrollPane sPDetallePagoServicio = new JScrollPane();
-					sPDetallePagoServicio.setBounds(26, 158, 236, 97);
-					panelPagoServicios.add(sPDetallePagoServicio);
-					
-					tDetallePagoServicio = new JTextArea();
-					sPDetallePagoServicio.setViewportView(tDetallePagoServicio);
-					
-					JLabel lblNewLabel_1 = new JLabel("Especifica servicio y detalla monto");
-					lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
-					lblNewLabel_1.setBounds(26, 128, 236, 19);
-					panelPagoServicios.add(lblNewLabel_1);
 					
 					tEdad = new JTextArea();
 					tEdad.setToolTipText("Ingrese la edad del asegurado");
@@ -498,11 +509,25 @@ import java.awt.event.MouseAdapter;
 							}
 							if (boxTipoServicio.getSelectedIndex()==0) {
 								lista.mensajeTemporizado("Debes seleccionar un tipo de servicio", 1000);
-							}else {
+							}else 
+							   if(boxTipoServicio.getSelectedIndex()==1)  {
+								s.setNombreServicio("Compras");
+								s.getC().ingresa(boxTipoCompra.getSelectedItem().toString(), tDetalleCompra.getText());
+							}else 
+								if (boxTipoServicio.getSelectedIndex()==2) {
+									s.setNombreServicio("Pago de Servicios Publicos");
+									s.getP().ingresa(boxTipoPagoServicio.getSelectedItem().toString(), tDetallePagoServicio.getText());
+									s.getP().setMonto(tMonto.getText());
+								
+							}else 
+								if (boxTipoServicio.getSelectedIndex()==3) {
+									s.setNombreServicio("Visita medica");
+									s.getV().ingresa(boxEspecialidadMedica.getSelectedItem().toString(), tDetalleVisita.getText());
 								
 							}
-						//
+						
 							s.getA().ingresar(nombre, edad, dni, numPoliza, TipoPoliza, direccion);
+							lista.insertar(s);
 						}
 					});
 					listo.setToolTipText("finalizar de agregar los datos");

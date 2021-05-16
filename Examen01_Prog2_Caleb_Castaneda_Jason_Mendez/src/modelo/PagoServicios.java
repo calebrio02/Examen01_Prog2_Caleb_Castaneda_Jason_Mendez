@@ -3,6 +3,18 @@ package modelo;
 public class PagoServicios extends Servicio{
 
 	private String ServicioPagar;
+	private String detalle;
+	
+	
+	public String getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
+	}
+
+
 	private String monto;
 	
 	 public String getServicioPagar() {
