@@ -528,6 +528,7 @@ import java.awt.event.MouseAdapter;
 						
 							s.getA().ingresar(nombre, edad, dni, numPoliza, TipoPoliza, direccion);
 							lista.insertar(s);
+							lista.mensajeTemporizado("Solicitud agregada", 2000);
 						}
 					});
 					listo.setToolTipText("finalizar de agregar los datos");
@@ -1314,6 +1315,16 @@ import java.awt.event.MouseAdapter;
 			panelBotonesMenuAgente.setLayout(null);
 			
 			JButton btnMostrar_1 = new JButton("Mostrar");
+			btnMostrar_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					CardLayout c = (CardLayout)(contentPane.getLayout());
+					c.show(contentPane, "t2");
+					datos.setText(lista.mostrar());
+					
+					
+					
+				}
+			});
 			btnMostrar_1.setOpaque(false);
 			btnMostrar_1.setBounds(0, 11, 123, 51);
 			panelBotonesMenuAgente.add(btnMostrar_1);
@@ -1324,6 +1335,15 @@ import java.awt.event.MouseAdapter;
 			btnMostrar_1.setBackground(new Color(0, 0, 0, 50));
 			
 			JButton btnActualiza_1 = new JButton("Actualizar");
+			btnActualiza_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					CardLayout c = (CardLayout)(contentPane.getLayout());
+					c.show(contentPane, "t1");
+					menuInserta.setVisible(true);
+					//datos.setText(lista.mostrar());
+				}
+			});
 			btnActualiza_1.setBounds(0, 60, 123, 51);
 			panelBotonesMenuAgente.add(btnActualiza_1);
 			btnActualiza_1.setToolTipText("actualiza alguna de las solicitudes de los asegurados...");

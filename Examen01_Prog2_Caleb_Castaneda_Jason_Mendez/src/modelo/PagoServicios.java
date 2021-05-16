@@ -4,6 +4,7 @@ public class PagoServicios extends Servicio{
 
 	private String ServicioPagar;
 	private String detalle;
+	private String monto;
 	
 	
 	public String getDetalle() {
@@ -15,7 +16,6 @@ public class PagoServicios extends Servicio{
 	}
 
 
-	private String monto;
 	
 	 public String getServicioPagar() {
 		return ServicioPagar;
@@ -43,7 +43,7 @@ public class PagoServicios extends Servicio{
 		// TODO Auto-generated method stub
 		
 		setServicioPagar(p);
-		setMonto(m);
+		setDetalle(m);
 		
 	}
 	

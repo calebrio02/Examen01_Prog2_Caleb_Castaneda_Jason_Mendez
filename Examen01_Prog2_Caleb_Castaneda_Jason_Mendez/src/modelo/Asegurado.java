@@ -41,9 +41,9 @@ public class Asegurado extends Persona{
 				+ "NOMBRE: " + getNombre() + "\n"
 				+ "EDAD: " + getEdad() + "\n"
 				+ "CEDULA: " + getCedula() + "\n"
-				+ "POLIZA: " + getNumPoliza() + "\n"
+				+ "POLIZA #: " + getNumPoliza() + "\n"
 				+ "DIRECCION: " + getDireccion() + "\n"
-				+ "CATEGORIA: " + getCategoria() + "\n";
+				+ "CATEGORIA DE POLIZA: " + getCategoria() + "\n";
 		
 		
 		return mensaje;

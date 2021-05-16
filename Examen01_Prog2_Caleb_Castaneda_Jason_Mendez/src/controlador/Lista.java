@@ -28,13 +28,19 @@ public class Lista {
 	
 	LinkedList<SolicitudSeguroSolidario> solicitudes = new LinkedList<SolicitudSeguroSolidario>();
 		
-		public String mostrar(int i) {
+public String mostrar(int i) {
 			
 			String info= "";
 			
-			for (int j = 0; j < solicitudes.size(); j++) {
-				
-				info += solicitudes.get(j).mostrar() + "\n\n";
+			
+			if (solicitudes.isEmpty()==true) {
+				mensajeTemporizado("No hay solicitudes", 1000);
+			} else {
+
+				for (int j = 0; j < solicitudes.size(); j++) {
+					
+					info += solicitudes.get(j).mostrar() + "\n\n";
+				}
 			}
 			
 			
@@ -54,6 +60,7 @@ public class Lista {
 			public void insertar(SolicitudSeguroSolidario s) {//SE IRAN AGREGANDO LAS SOLICITUDES EN EL REGISTRO DEL SEGURO
 				solicitudes.add(s);
 				size++;
+				
 			}
 			
 			
