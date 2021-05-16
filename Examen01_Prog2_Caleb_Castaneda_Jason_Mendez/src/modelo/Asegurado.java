@@ -51,11 +51,12 @@ public class Asegurado extends Persona{
 	}
 	
 	
-	public void ingresar(String nombre, String edad, String dni, String TipoPoliza, String Direccion) {
+	public void ingresar(String nombre, String edad, String dni, String numPoliza, String TipoPoliza, String Direccion) {
 		
 		setNombre(nombre);
 		setEdad(edad);
 		setCedula(dni);
+		setNumPoliza(numPoliza);
 		setCategoria(TipoPoliza);
 		setDireccion(Direccion);
 
