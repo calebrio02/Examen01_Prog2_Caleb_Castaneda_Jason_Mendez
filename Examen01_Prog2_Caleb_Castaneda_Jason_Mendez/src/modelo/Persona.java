@@ -4,9 +4,9 @@ public class Persona {
 	
 	//ATRIBUTOS DE LA CLASE PERSONA
 
-	String nombre;
-	String edad;
-	String cedula;
+	private String nombre;
+	private String edad;
+	private String cedula;
 	
 	
 	//RESPECTIVOS METDOS SETTERS AND GETTERS

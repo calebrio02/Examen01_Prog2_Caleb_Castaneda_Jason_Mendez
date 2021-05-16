@@ -1,12 +1,10 @@
 package modelo;
 
 public class VisitaMedica extends Servicio {
-	String motivo;
-	String detalle;
+	
+	private String motivo;
+	private String detalle;
 
-	
-	
-	
 	public String getMotivo() {
 		return motivo;
 	}

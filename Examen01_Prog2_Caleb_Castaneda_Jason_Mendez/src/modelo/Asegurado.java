@@ -6,9 +6,9 @@ public class Asegurado extends Persona{
 	
 	//ATRIBUTOS DEL/A ASEGURADO
 	
-	String numPoliza;
-	String direccion;
-	String Categoria;//HACE REFERENCIA A SI ES ASEGURADO SOLO O PERTENCE A UN SEGURO DE COBERTURA FAMILIAR. 
+	private String numPoliza;
+	private String direccion;
+	private String Categoria;//HACE REFERENCIA A SI ES ASEGURADO SOLO O PERTENCE A UN SEGURO DE COBERTURA FAMILIAR. 
 	
 	
 	

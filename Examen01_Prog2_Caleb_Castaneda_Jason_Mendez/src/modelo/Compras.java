@@ -4,8 +4,8 @@ public class Compras extends Servicio {
 	
 	
 
-	String tipoCompra;
-	String detalle;
+	private String tipoCompra;
+	private String detalle;
 	
 	public String getTipoCompra() {
 		return tipoCompra;

@@ -2,8 +2,8 @@ package modelo;
 
 public class PagoServicios extends Servicio{
 
-	String ServicioPagar;
-	String monto;
+	private String ServicioPagar;
+	private String monto;
 	
 	 public String getServicioPagar() {
 		return ServicioPagar;

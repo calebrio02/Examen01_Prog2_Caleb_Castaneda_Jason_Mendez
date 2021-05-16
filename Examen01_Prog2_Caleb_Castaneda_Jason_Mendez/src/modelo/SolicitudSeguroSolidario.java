@@ -1,13 +1,16 @@
 package modelo;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class SolicitudSeguroSolidario {
 	
 //ATRIBUTOS EXCLUSIVOS DE LA PRESENTE CLASE 
-		String fechaHoraSolicitud;
+		private String fechaHoraSolicitud;
 
 
-		String nombreServicio;
-		int indiceSolicitud;
+		private String nombreServicio;
+		private int indiceSolicitud;
 
 		
 //AGREGACION DEL ASUGURADO A SEGURO/SOLICITUD
@@ -85,7 +88,15 @@ public class SolicitudSeguroSolidario {
 //--------------------------------------------------------------------------------------------------- 
 	 
 	 public String mostrar() {
+		 
+		 
+		 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
+		   LocalDateTime now = LocalDateTime.now();
+		   setFechaHoraSolicitud(dtf.format(now));
+		   
 		String mensaje = "";
+		
+		
 		
 		mensaje= "FECHA/HORA DE SOLICITUD; " 
 				+ getFechaHoraSolicitud()
