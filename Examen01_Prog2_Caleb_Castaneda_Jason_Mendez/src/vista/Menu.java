@@ -1283,6 +1283,53 @@ import javax.swing.JSplitPane;
 			panelEliminar.setLayout(null);
 			
 			JTextArea tPolizaEliminar = new JTextArea();
+			tPolizaEliminar.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					tPolizaEliminar.setText(null);
+				}
+			});
+			
+			tPolizaEliminar.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
+	                {
+                public void keyTyped(KeyEvent e)
+                {
+                    char caracter = e.getKeyChar();
+
+
+                    if(((caracter < '0') ||
+                            (caracter > '9')) &&
+                            (caracter != '\b' ))
+                    {
+                        e.consume();  // ignorar el evento de teclado
+                        lista.mensajeTemporizado("Poliza debe contener solamente numeros", 1800);
+
+                    }
+                }
+            });
+			
+			
+			
+			
+			tPolizaEliminar.addKeyListener(new KeyListener(){
+			   	 
+			   	public void keyTyped(KeyEvent e)
+			   	 
+			   	{if (tPolizaEliminar.getText().length()==3) //LIMITA AL USER A SOLO AGREGAR EL NUMERO DEL PACIENTE QUE SE QUIERE ACTUALIZAR
+			   	 
+			   	     e.consume();
+			   			if(tPolizaEliminar.getText().length()==3) {
+			   				lista.mensajeTemporizado("Poliza consta de 3 digitos", 1800);
+			   			}
+			   	
+			   	}
+			   	 
+			   	public void keyPressed(KeyEvent arg0) {
+			   	}
+			   	 
+			   	public void keyReleased(KeyEvent arg0) {
+			   	}
+			   	});
 			tPolizaEliminar.setToolTipText("Especifique numero de poliza a buscar");
 			tPolizaEliminar.setText("Poliza a Eliminar");
 			tPolizaEliminar.setOpaque(false);
@@ -1296,6 +1343,7 @@ import javax.swing.JSplitPane;
 				public void actionPerformed(ActionEvent e) {
 					lista.suprimir(tPolizaEliminar.getText());
 					tSolicitudesEliminar.setText(lista.acumulaDatos());
+					tPolizaEliminar.setText(null);
 				}
 			});
 			btnEliminaSolicitud.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/DeleteOneUser48px.png")));
@@ -1328,6 +1376,7 @@ import javax.swing.JSplitPane;
 			panelEliminar.add(btnEliminaTodo);
 			
 			JPanel panelBuscarAgente = new JPanel();
+			panelBuscarAgente.setVisible(false);
 			panelBuscarAgente.setBackground(new Color(128, 128, 0));
 			panelBuscarAgente.setBounds(124, 0, 612, 454);
 			BienvenidaAgente.add(panelBuscarAgente);
@@ -1339,7 +1388,7 @@ import javax.swing.JSplitPane;
 				public void mouseClicked(MouseEvent e) {
 					
 					
-					tPolizaBuscar.selectAll();
+					tPolizaBuscar.setText(null);;
 				}
 			});
 			tPolizaBuscar.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
@@ -1421,12 +1470,17 @@ import javax.swing.JSplitPane;
 			JButton btnBuscar = new JButton("Buscar");
 			btnBuscar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					panelBuscarAgente.setVisible(true);
-					panelEliminar.setVisible(false);
 					
-					
-					
-					
+					if (lista.elementosLista()==false) {
+						panelBuscarAgente.setVisible(false);
+						panelEliminar.setVisible(false);
+						lista.mensajeTemporizado("No existen Solicitudes", 1000);
+					} else {
+						panelBuscarAgente.setVisible(true);
+						panelEliminar.setVisible(false);
+
+					}
+
 				}
 			});
 			btnBuscar.setOpaque(false);
@@ -1460,9 +1514,16 @@ import javax.swing.JSplitPane;
 			JButton btnEliminar = new JButton("Eliminar");
 			btnEliminar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					panelBuscarAgente.setVisible(false);
-					panelEliminar.setVisible(true);
-					tSolicitudesEliminar.setText(lista.acumulaDatos());
+					
+					if (lista.elementosLista()==false) {
+						lista.mensajeTemporizado("No existen solicitudes", 1000);
+						panelBuscarAgente.setVisible(false);
+						panelEliminar.setVisible(false);
+					} else {
+						panelBuscarAgente.setVisible(false);
+						panelEliminar.setVisible(true);
+						tSolicitudesEliminar.setText(lista.acumulaDatos());
+					}
 				}
 			});
 			btnEliminar.setBounds(0, 108, 123, 51);
