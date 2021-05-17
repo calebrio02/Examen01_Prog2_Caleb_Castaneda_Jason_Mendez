@@ -65,21 +65,30 @@ public String mostrar(int i) {
 			
 			
 			
-			public void consultar(int d) {//
-				
+			public String consultar(String d) {//
+				String mensaje= "";
 					
 					try {
 						if(solicitudes.isEmpty()) {///Si esta vacia se despliega el memnsaje
 							mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
 						}else {
-					
-							JOptionPane.showMessageDialog(null, solicitudes.get(d-1).mostrar()); 
+						
+								for (int i = 0; i < solicitudes.size(); i++) {
+									if(solicitudes.get(i).getA().getNumPoliza().equalsIgnoreCase(d)) {
+										mensaje= solicitudes.get(i).mostrar();
+								}else {
+									
+								}
+							
 						}
+								}
 						}catch (Exception e) {
 							mensajeTemporizado("SOLICITUD NO EXISTE", 1500);
 
 						}
 					
+					
+					return mensaje;
 			}
 			
 			public SolicitudSeguroSolidario buscar(int d) {//METODO PARA BUSCAR A UN ASEGURADO EN ESPECIFICO, LA VARIABEL "d" REFERENTE A DATO, SE UTILIZARA PARA RECIBIR EL DATO DE INGRESADO EN GUI
@@ -121,7 +130,6 @@ public String mostrar(int i) {
 			public void eliminarLista() {//SE ELIMINA DE FORMA TOTAL EL REGISTRO DE SOLICITUDES,
 											//**METODO EXCLUSIVO PARA EL AGENTE CORREDOR DE SEGUROS**
 				
-				
 				solicitudes.removeAll(solicitudes);
 			}
 			
@@ -131,21 +139,29 @@ public String mostrar(int i) {
 						
 			
 			
-			public void suprimir(int d) {	//SE UTILIZA LA MISMA DINAMICA QUE EN BUSCAR Y ACTUALIZAR
+			public void suprimir(String d) {	//SE UTILIZA LA MISMA DINAMICA QUE EN BUSCAR Y ACTUALIZAR
 											//EL PARAMETROS "d" REFERENTE A DATO, SE UTILIZARA PARA RECIBIR EL DATO DE INGRESADO EN GUI,
-											//**METODO EXCLUSIVO PARA EL AGENTE CORREDOR DE SEGUROS**
-
-				
-				
+					
+								//**METODO EXCLUSIVO PARA EL AGENTE CORREDOR DE SEGUROS**
 				try {
+					
 					if(solicitudes.isEmpty()){///Si esta vacia se despliega el memnsaje
 						mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
 					}else {
 						
-						solicitudes.remove((d-1));
-						mensajeTemporizado("SOLICITUD [" + d + "]" + "eliminado", 800);
-						size--;
+						for (int i = 0; i < solicitudes.size(); i++) {
+							if(solicitudes.get(i).getA().getNumPoliza().equalsIgnoreCase(d)) {
+								mensajeTemporizado("SOLICITUD [" +  (solicitudes.get(i).getA().getNumPoliza()) + "] " + "eliminado", 1200);
+								solicitudes.remove(solicitudes.get(i));
+						}else {
+							
+						}
+					
+				
+						
+					
 					}
+						}
 					
 					}catch (Exception e) {
 						mensajeTemporizado("SOLICITUD NO EXISTE", 1500);
@@ -228,12 +244,13 @@ public String mostrar(int i) {
 				
 				String mensaje="";
 				if(solicitudes.isEmpty()) {
+					mensajeTemporizado("NO EXISTEN SOLICITUDES", 1000);
 				}else { 
 					
 					//Datos para ver los datos de forma dinamica
-					for (int i = 0; i < size; i++) {
+					for (int i = 0; i < solicitudes.size(); i++) {
 						
-					mensaje+= "Persona [" + (i+1) + "]" + ": " + solicitudes.get(i).getA().getNombre() + "\n";
+					mensaje+= "Poliza [" + (solicitudes.get(i).getA().getNumPoliza()) + "] || " + "Beneficiario: " + solicitudes.get(i).getA().getNombre() + "\n";
 						
 					}	
 				}
