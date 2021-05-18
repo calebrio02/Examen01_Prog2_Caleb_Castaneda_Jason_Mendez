@@ -29,6 +29,7 @@ public class Lista {
 	LinkedList<SolicitudSeguroSolidario> solicitudes = new LinkedList<SolicitudSeguroSolidario>();
 		
 public String mostrar(int i) {//recibe numero de poliza
+	//Se crea variable para retornar
 			
 			String info= "";
 			
