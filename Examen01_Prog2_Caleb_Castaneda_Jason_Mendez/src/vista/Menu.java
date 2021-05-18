@@ -737,6 +737,7 @@ import javax.swing.JSplitPane;
 			panelMuestra.add(scrollPane_2);
 			
 			JTextArea tMuestraDatosAsegurado = new JTextArea();
+			tMuestraDatosAsegurado.setMargin(new Insets(2, 10, 2, 2));
 			tMuestraDatosAsegurado.setEditable(false);
 			tMuestraDatosAsegurado.setToolTipText("Mostrando solicitudes en registro");
 			tMuestraDatosAsegurado.setFont(new Font("Sitka Subheading", Font.BOLD | Font.ITALIC, 14));
@@ -756,6 +757,7 @@ import javax.swing.JSplitPane;
 			panelMenuOpciones.setLayout(null);
 			
 			JButton bBackToLogin = new JButton("");
+			bBackToLogin.setHorizontalAlignment(SwingConstants.RIGHT);
 			bBackToLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			bBackToLogin.setBorder(null);
 			bBackToLogin.setToolTipText("Salir del perfil \"Asegurado\", vuelve e inicia otra sesion");
@@ -766,15 +768,18 @@ import javax.swing.JSplitPane;
 					bienvenidaAsegurado.setVisible(false);
 				}
 			});
-			bBackToLogin.setBounds(29, 230, 55, 51);
+			bBackToLogin.setBounds(0, 309, 79, 51);
 			panelMenuOpciones.add(bBackToLogin);
 			//btnMostrar.setIcon(new ImageIcon(Menu.class.getResource("/vista/iconsImages/monitor_16.png")));
 			
-			JButton btnInsertar = new JButton("Inserta");
-			btnInsertar.setBounds(0, 0, 113, 51);
+			JButton btnInsertar = new JButton("");
+			btnInsertar.setHorizontalAlignment(SwingConstants.RIGHT);
+			btnInsertar.setContentAreaFilled(false);
+			btnInsertar.setBorder(null);
+			btnInsertar.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/insert48.png")));
+			btnInsertar.setBounds(10, 30, 79, 51);
 			panelMenuOpciones.add(btnInsertar);
-			btnInsertar.setToolTipText("Agrega los gastos para este mes...");
-			btnInsertar.setHorizontalAlignment(SwingConstants.LEFT);
+			btnInsertar.setToolTipText("Agregar registro");
 			btnInsertar.setForeground(Color.WHITE);
 			btnInsertar.setOpaque(false);
 			btnInsertar.setBackground(new Color (0, 0, 0, 50));
@@ -783,7 +788,7 @@ import javax.swing.JSplitPane;
 			
 			btnInsertar.setSelected(true);
 			btnInsertar.setPreferredSize(new Dimension(68, 23));
-			btnInsertar.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
+			btnInsertar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			
 			//PARA QUE SE CREE UN NUEVO REPORTE EN ORDEN?
 			
@@ -798,11 +803,15 @@ import javax.swing.JSplitPane;
 			});
 			btnInsertar.setFont(new Font("SimSun", Font.BOLD, 15));
 			
-					JButton btnMostrar = new JButton("Mostrar");
-					btnMostrar.setBounds(0, 62, 113, 51);
+					JButton btnMostrar = new JButton("");
+					btnMostrar.setHorizontalAlignment(SwingConstants.RIGHT);
+					btnMostrar.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/ShowView48.png")));
+					btnMostrar.setContentAreaFilled(false);
+					btnMostrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+					btnMostrar.setBorder(null);
+					btnMostrar.setBounds(0, 109, 79, 51);
 					panelMenuOpciones.add(btnMostrar);
 					btnMostrar.setToolTipText("ver el resumen de todos los gastos registrados...");
-					btnMostrar.setHorizontalAlignment(SwingConstants.LEFT);
 					btnMostrar.setForeground(Color.WHITE);
 					btnMostrar.setOpaque(false);
 					btnMostrar.setBackground(new Color (0, 0, 0, 50));
@@ -828,6 +837,7 @@ import javax.swing.JSplitPane;
 					btnMostrar.setFont(new Font("SimSun", Font.BOLD, 15));
 					
 					JButton bSalirProgramaAsegurado = new JButton("");
+					bSalirProgramaAsegurado.setHorizontalAlignment(SwingConstants.RIGHT);
 					bSalirProgramaAsegurado.setBorder(null);
 					bSalirProgramaAsegurado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 					bSalirProgramaAsegurado.addActionListener(new ActionListener() {
@@ -847,7 +857,7 @@ import javax.swing.JSplitPane;
 					bSalirProgramaAsegurado.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/VolverPrincipal48px.png")));
 					bSalirProgramaAsegurado.setToolTipText("Salir del programa");
 					bSalirProgramaAsegurado.setContentAreaFilled(false);
-					bSalirProgramaAsegurado.setBounds(29, 305, 44, 45);
+					bSalirProgramaAsegurado.setBounds(0, 372, 79, 45);
 					panelMenuOpciones.add(bSalirProgramaAsegurado);
 			
 			
@@ -1279,44 +1289,40 @@ import javax.swing.JSplitPane;
 			panelEliminar.setVisible(false);
 			
 			JPanel panelActualiza = new JPanel();
+			panelActualiza.setVisible(false);
 			panelActualiza.setBackground(Color.LIGHT_GRAY);
 			panelActualiza.setBounds(124, 0, 608, 448);
 			BienvenidaAgente.add(panelActualiza);
 			panelActualiza.setLayout(null);
 			
-			JPanel panelPagoServiciosActualizar = new JPanel();
-			panelPagoServiciosActualizar.setVisible(false);
-			panelPagoServiciosActualizar.setBounds(301, 144, 258, 239);
-			panelActualiza.add(panelPagoServiciosActualizar);
-			panelPagoServiciosActualizar.setLayout(null);
-			
-			JComboBox boxTipoPagoServicio_1 = new JComboBox();
-			boxTipoPagoServicio_1.setModel(new DefaultComboBoxModel(new String[] {" Tipo de servicio a pagar", "Publico", "Municipal"}));
-			boxTipoPagoServicio_1.setToolTipText("Seleccione el tipo de servicio a pagar");
-			boxTipoPagoServicio_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
-			boxTipoPagoServicio_1.setBounds(10, 11, 236, 27);
-			panelPagoServiciosActualizar.add(boxTipoPagoServicio_1);
-			
-			JLabel lblNewLabel_1_1 = new JLabel("Especifica servicio");
-			lblNewLabel_1_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
-			lblNewLabel_1_1.setBounds(10, 86, 129, 19);
-			panelPagoServiciosActualizar.add(lblNewLabel_1_1);
-			
-			JScrollPane sPDetallePagoServicio_1 = new JScrollPane();
-			sPDetallePagoServicio_1.setBounds(10, 116, 236, 34);
-			panelPagoServiciosActualizar.add(sPDetallePagoServicio_1);
-			
-			JTextArea tMonto_1 = new JTextArea();
-			tMonto_1.setToolTipText("ingrese la identificacion del asegurado");
-			tMonto_1.setText("Monto");
-			tMonto_1.setOpaque(false);
-			tMonto_1.setForeground(new Color(47, 79, 79));
-			tMonto_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tMonto_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tMonto_1.setBounds(10, 171, 161, 21);
-			panelPagoServiciosActualizar.add(tMonto_1);
-			
 			JPanel panelVisitaMedicaActualizar = new JPanel();
+			panelVisitaMedicaActualizar.setVisible(false);
+			
+			JPanel panelComprasActualiza = new JPanel();
+			panelComprasActualiza.setVisible(false);
+			panelComprasActualiza.setBounds(301, 144, 258, 239);
+			panelActualiza.add(panelComprasActualiza);
+			panelComprasActualiza.setLayout(null);
+			
+			JComboBox boxTipoCompra_1 = new JComboBox();
+			boxTipoCompra_1.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo de compra", "Supermercado", "Farmacia"}));
+			boxTipoCompra_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxTipoCompra_1.setBounds(10, 11, 238, 22);
+			panelComprasActualiza.add(boxTipoCompra_1);
+			
+			JScrollPane sPDetalleCompra_1 = new JScrollPane();
+			sPDetalleCompra_1.setBounds(14, 118, 234, 98);
+			panelComprasActualiza.add(sPDetalleCompra_1);
+			
+			JTextArea textAreaCompraAc = new JTextArea();
+			textAreaCompraAc.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			sPDetalleCompra_1.setViewportView(textAreaCompraAc);
+			
+			JLabel lblDetalleCompra_1 = new JLabel("Detalle de compra");
+			lblDetalleCompra_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblDetalleCompra_1.setFont(new Font("Sitka Text", Font.BOLD, 14));
+			lblDetalleCompra_1.setBounds(51, 93, 161, 14);
+			panelComprasActualiza.add(lblDetalleCompra_1);
 			panelVisitaMedicaActualizar.setBounds(301, 144, 258, 239);
 			panelActualiza.add(panelVisitaMedicaActualizar);
 			panelVisitaMedicaActualizar.setLayout(null);
@@ -1338,26 +1344,45 @@ import javax.swing.JSplitPane;
 			sPDetalleMotivoVisita_1.setBounds(12, 105, 236, 123);
 			panelVisitaMedicaActualizar.add(sPDetalleMotivoVisita_1);
 			
-			JPanel panelComprasActualiza = new JPanel();
-			panelComprasActualiza.setBounds(301, 144, 258, 239);
-			panelActualiza.add(panelComprasActualiza);
-			panelComprasActualiza.setLayout(null);
+			JTextArea textAreaMotivoVisitaAc = new JTextArea();
+			textAreaMotivoVisitaAc.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			sPDetalleMotivoVisita_1.setViewportView(textAreaMotivoVisitaAc);
 			
-			JComboBox boxTipoCompra_1 = new JComboBox();
-			boxTipoCompra_1.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo de compra", "Supermercado", "Farmacia"}));
-			boxTipoCompra_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
-			boxTipoCompra_1.setBounds(10, 11, 238, 22);
-			panelComprasActualiza.add(boxTipoCompra_1);
+			JPanel panelPagoServiciosActualizar = new JPanel();
+			panelPagoServiciosActualizar.setVisible(false);
+			panelPagoServiciosActualizar.setBounds(301, 144, 258, 239);
+			panelActualiza.add(panelPagoServiciosActualizar);
+			panelPagoServiciosActualizar.setLayout(null);
 			
-			JScrollPane sPDetalleCompra_1 = new JScrollPane();
-			sPDetalleCompra_1.setBounds(14, 118, 234, 98);
-			panelComprasActualiza.add(sPDetalleCompra_1);
+			JComboBox boxTipoPagoServicio_1 = new JComboBox();
+			boxTipoPagoServicio_1.setModel(new DefaultComboBoxModel(new String[] {" Tipo de servicio a pagar", "Publico", "Municipal"}));
+			boxTipoPagoServicio_1.setToolTipText("Seleccione el tipo de servicio a pagar");
+			boxTipoPagoServicio_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxTipoPagoServicio_1.setBounds(10, 11, 236, 27);
+			panelPagoServiciosActualizar.add(boxTipoPagoServicio_1);
 			
-			JLabel lblDetalleCompra_1 = new JLabel("Detalle de compra");
-			lblDetalleCompra_1.setHorizontalAlignment(SwingConstants.CENTER);
-			lblDetalleCompra_1.setFont(new Font("Sitka Text", Font.BOLD, 14));
-			lblDetalleCompra_1.setBounds(51, 93, 161, 14);
-			panelComprasActualiza.add(lblDetalleCompra_1);
+			JLabel lblNewLabel_1_1 = new JLabel("Especifica servicio");
+			lblNewLabel_1_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
+			lblNewLabel_1_1.setBounds(10, 86, 129, 19);
+			panelPagoServiciosActualizar.add(lblNewLabel_1_1);
+			
+			JScrollPane sPDetallePagoServicioAc = new JScrollPane();
+			sPDetallePagoServicioAc.setBounds(10, 116, 236, 34);
+			panelPagoServiciosActualizar.add(sPDetallePagoServicioAc);
+			
+			JTextArea textAreaServicioAc = new JTextArea();
+			textAreaServicioAc.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			sPDetallePagoServicioAc.setViewportView(textAreaServicioAc);
+			
+			JTextArea tMonto_1 = new JTextArea();
+			tMonto_1.setToolTipText("ingrese la identificacion del asegurado");
+			tMonto_1.setText("Monto");
+			tMonto_1.setOpaque(false);
+			tMonto_1.setForeground(new Color(47, 79, 79));
+			tMonto_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tMonto_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tMonto_1.setBounds(10, 171, 161, 21);
+			panelPagoServiciosActualizar.add(tMonto_1);
 			
 			JLabel lblNombre_2 = new JLabel("Nombre:");
 			lblNombre_2.setForeground(new Color(47, 79, 79));
@@ -1453,6 +1478,26 @@ import javax.swing.JSplitPane;
 			btnBorraD_1.setFont(new Font("Dialog", Font.BOLD, 13));
 			btnBorraD_1.setBounds(438, 408, 109, 29);
 			panelActualiza.add(btnBorraD_1);
+			
+			JScrollPane sPMuestraAc = new JScrollPane();
+			sPMuestraAc.setBounds(20, 22, 253, 51);
+			panelActualiza.add(sPMuestraAc);
+			
+			JTextArea textAreaMuestraAc = new JTextArea();
+			textAreaMuestraAc.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			sPMuestraAc.setViewportView(textAreaMuestraAc);
+			
+			JButton btnAnterior = new JButton("");
+			btnAnterior.setToolTipText("finalizar de agregar los datos");
+			btnAnterior.setFont(new Font("Dialog", Font.BOLD, 13));
+			btnAnterior.setBounds(301, 22, 109, 29);
+			panelActualiza.add(btnAnterior);
+			
+			JButton Siguiente = new JButton("");
+			Siguiente.setToolTipText("finalizar de agregar los datos");
+			Siguiente.setFont(new Font("Dialog", Font.BOLD, 13));
+			Siguiente.setBounds(450, 22, 109, 29);
+			panelActualiza.add(Siguiente);
 			panelEliminar.setBackground(SystemColor.activeCaption);
 			panelEliminar.setBounds(124, 0, 612, 454);
 			BienvenidaAgente.add(panelEliminar);
@@ -1643,42 +1688,61 @@ import javax.swing.JSplitPane;
 			BienvenidaAgente.add(panelBotonesMenuAgente);
 			panelBotonesMenuAgente.setLayout(null);
 			
-			JButton btnBuscar = new JButton("Buscar");
+			JButton btnBuscar = new JButton("");
+			btnBuscar.setContentAreaFilled(false);
+			btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnBuscar.setBorder(null);
+			btnBuscar.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/Search48.png")));
 			btnBuscar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
 					if (lista.elementosLista()==false) {
 						panelBuscarAgente.setVisible(false);
 						panelEliminar.setVisible(false);
+						panelActualiza.setVisible(false);
 						lista.mensajeTemporizado("No existen Solicitudes", 1000);
 					} else {
 						panelBuscarAgente.setVisible(true);
 						panelEliminar.setVisible(false);
+						panelActualiza.setVisible(false);
 
 					}
 
 				}
 			});
 			btnBuscar.setOpaque(false);
-			btnBuscar.setBounds(0, 11, 123, 51);
+			btnBuscar.setBounds(33, 11, 52, 51);
 			panelBotonesMenuAgente.add(btnBuscar);
-			btnBuscar.setToolTipText("ver el resumen de todas las solicitudes registradas...");
+			btnBuscar.setToolTipText("Buscar solicitudes registradas");
 			btnBuscar.setHorizontalAlignment(SwingConstants.LEFT);
 			btnBuscar.setForeground(Color.WHITE);
 			btnBuscar.setFont(new Font("SimSun", Font.BOLD, 15));
 			btnBuscar.setBackground(new Color(0, 0, 0, 50));
 			
-			JButton btnActualiza_1 = new JButton("Actualizar");
+			JButton btnActualiza_1 = new JButton("");
+			btnActualiza_1.setContentAreaFilled(false);
+			btnActualiza_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnActualiza_1.setBorder(null);
+			btnActualiza_1.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/Update.png")));
 			btnActualiza_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					CardLayout c = (CardLayout)(contentPane.getLayout());
-					c.show(contentPane, "t1");
-					panelInserta.setVisible(true);
-					//datos.setText(lista.mostrar());
+					if (lista.elementosLista()==false) {
+						panelBuscarAgente.setVisible(false);
+						panelEliminar.setVisible(false);
+						panelActualiza.setVisible(false);
+						lista.mensajeTemporizado("No existen Solicitudes", 1000);
+					} else {
+						
+						panelActualiza.setVisible(true);
+						panelEliminar.setVisible(false);
+						panelBuscarAgente.setVisible(false);
+
+					}
+					
 				}
 			});
-			btnActualiza_1.setBounds(0, 60, 123, 51);
+			btnActualiza_1.setBounds(33, 77, 52, 51);
 			panelBotonesMenuAgente.add(btnActualiza_1);
 			btnActualiza_1.setToolTipText("actualiza alguna de las solicitudes de los asegurados...");
 			btnActualiza_1.setOpaque(false);
@@ -1687,22 +1751,28 @@ import javax.swing.JSplitPane;
 			btnActualiza_1.setFont(new Font("SimSun", Font.BOLD, 15));
 			btnActualiza_1.setBackground(new Color(0, 0, 0, 50));
 			
-			JButton btnEliminar = new JButton("Eliminar");
+			JButton btnEliminar = new JButton("");
+			btnEliminar.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/Delete48.png")));
+			btnEliminar.setBorder(null);
+			btnEliminar.setContentAreaFilled(false);
+			btnEliminar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnEliminar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
 					if (lista.elementosLista()==false) {
 						lista.mensajeTemporizado("No existen solicitudes", 1000);
 						panelBuscarAgente.setVisible(false);
+						panelActualiza.setVisible(false);
 						panelEliminar.setVisible(false);
 					} else {
 						panelBuscarAgente.setVisible(false);
 						panelEliminar.setVisible(true);
+						panelActualiza.setVisible(false);
 						tSolicitudesEliminar.setText(lista.acumulaDatos());
 					}
 				}
 			});
-			btnEliminar.setBounds(0, 108, 123, 51);
+			btnEliminar.setBounds(33, 159, 52, 51);
 			panelBotonesMenuAgente.add(btnEliminar);
 			btnEliminar.setToolTipText("elimina uno o bien todos las solicitudes registradas");
 			btnEliminar.setOpaque(false);
@@ -1730,7 +1800,7 @@ import javax.swing.JSplitPane;
 			
 			bSalirSesionAgente.setContentAreaFilled(false);
 			bSalirSesionAgente.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/VolverPrincipal48px.png")));
-			bSalirSesionAgente.setBounds(33, 337, 52, 44);
+			bSalirSesionAgente.setBounds(33, 387, 52, 44);
 			panelBotonesMenuAgente.add(bSalirSesionAgente);
 			
 			JButton bBackToLoginAgente = new JButton("");
@@ -1744,7 +1814,7 @@ import javax.swing.JSplitPane;
 			bBackToLoginAgente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			bBackToLoginAgente.setContentAreaFilled(false);
 			bBackToLoginAgente.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/Home48.png")));
-			bBackToLoginAgente.setBounds(33, 248, 52, 44);
+			bBackToLoginAgente.setBounds(33, 301, 52, 44);
 			panelBotonesMenuAgente.add(bBackToLoginAgente);
 			
 			//
