@@ -1284,10 +1284,85 @@ import javax.swing.JSplitPane;
 			BienvenidaAgente.add(panelActualiza);
 			panelActualiza.setLayout(null);
 			
+			JPanel panelPagoServiciosActualizar = new JPanel();
+			panelPagoServiciosActualizar.setVisible(false);
+			panelPagoServiciosActualizar.setBounds(301, 144, 258, 239);
+			panelActualiza.add(panelPagoServiciosActualizar);
+			panelPagoServiciosActualizar.setLayout(null);
+			
+			JComboBox boxTipoPagoServicio_1 = new JComboBox();
+			boxTipoPagoServicio_1.setModel(new DefaultComboBoxModel(new String[] {" Tipo de servicio a pagar", "Publico", "Municipal"}));
+			boxTipoPagoServicio_1.setToolTipText("Seleccione el tipo de servicio a pagar");
+			boxTipoPagoServicio_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxTipoPagoServicio_1.setBounds(10, 11, 236, 27);
+			panelPagoServiciosActualizar.add(boxTipoPagoServicio_1);
+			
+			JLabel lblNewLabel_1_1 = new JLabel("Especifica servicio");
+			lblNewLabel_1_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
+			lblNewLabel_1_1.setBounds(10, 86, 129, 19);
+			panelPagoServiciosActualizar.add(lblNewLabel_1_1);
+			
+			JScrollPane sPDetallePagoServicio_1 = new JScrollPane();
+			sPDetallePagoServicio_1.setBounds(10, 116, 236, 34);
+			panelPagoServiciosActualizar.add(sPDetallePagoServicio_1);
+			
+			JTextArea tMonto_1 = new JTextArea();
+			tMonto_1.setToolTipText("ingrese la identificacion del asegurado");
+			tMonto_1.setText("Monto");
+			tMonto_1.setOpaque(false);
+			tMonto_1.setForeground(new Color(47, 79, 79));
+			tMonto_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tMonto_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tMonto_1.setBounds(10, 171, 161, 21);
+			panelPagoServiciosActualizar.add(tMonto_1);
+			
+			JPanel panelVisitaMedicaActualizar = new JPanel();
+			panelVisitaMedicaActualizar.setBounds(301, 144, 258, 239);
+			panelActualiza.add(panelVisitaMedicaActualizar);
+			panelVisitaMedicaActualizar.setLayout(null);
+			
+			JComboBox boxEspecialidadMedica_1 = new JComboBox();
+			boxEspecialidadMedica_1.setModel(new DefaultComboBoxModel(new String[] {"Elije especialidad medica", "Medicina General", "Fisioterapia", "Psicologia"}));
+			boxEspecialidadMedica_1.setToolTipText("Escoge la especialidad medica deseada");
+			boxEspecialidadMedica_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxEspecialidadMedica_1.setBounds(10, 11, 238, 22);
+			panelVisitaMedicaActualizar.add(boxEspecialidadMedica_1);
+			
+			JLabel lblNewLabel_3_1 = new JLabel("Detalle motivo de visita");
+			lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_3_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
+			lblNewLabel_3_1.setBounds(21, 80, 214, 22);
+			panelVisitaMedicaActualizar.add(lblNewLabel_3_1);
+			
+			JScrollPane sPDetalleMotivoVisita_1 = new JScrollPane();
+			sPDetalleMotivoVisita_1.setBounds(12, 105, 236, 123);
+			panelVisitaMedicaActualizar.add(sPDetalleMotivoVisita_1);
+			
+			JPanel panelComprasActualiza = new JPanel();
+			panelComprasActualiza.setBounds(301, 144, 258, 239);
+			panelActualiza.add(panelComprasActualiza);
+			panelComprasActualiza.setLayout(null);
+			
+			JComboBox boxTipoCompra_1 = new JComboBox();
+			boxTipoCompra_1.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo de compra", "Supermercado", "Farmacia"}));
+			boxTipoCompra_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxTipoCompra_1.setBounds(10, 11, 238, 22);
+			panelComprasActualiza.add(boxTipoCompra_1);
+			
+			JScrollPane sPDetalleCompra_1 = new JScrollPane();
+			sPDetalleCompra_1.setBounds(14, 118, 234, 98);
+			panelComprasActualiza.add(sPDetalleCompra_1);
+			
+			JLabel lblDetalleCompra_1 = new JLabel("Detalle de compra");
+			lblDetalleCompra_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblDetalleCompra_1.setFont(new Font("Sitka Text", Font.BOLD, 14));
+			lblDetalleCompra_1.setBounds(51, 93, 161, 14);
+			panelComprasActualiza.add(lblDetalleCompra_1);
+			
 			JLabel lblNombre_2 = new JLabel("Nombre:");
 			lblNombre_2.setForeground(new Color(47, 79, 79));
 			lblNombre_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
-			lblNombre_2.setBounds(10, 58, 81, 16);
+			lblNombre_2.setBounds(20, 104, 81, 16);
 			panelActualiza.add(lblNombre_2);
 			
 			JTextArea tNombre_1 = new JTextArea();
@@ -1296,8 +1371,88 @@ import javax.swing.JSplitPane;
 			tNombre_1.setForeground(new Color(47, 79, 79));
 			tNombre_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
 			tNombre_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tNombre_1.setBounds(101, 56, 161, 21);
+			tNombre_1.setBounds(111, 102, 161, 21);
 			panelActualiza.add(tNombre_1);
+			
+			JLabel lblResidencia_2 = new JLabel("Edad:");
+			lblResidencia_2.setForeground(new Color(47, 79, 79));
+			lblResidencia_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblResidencia_2.setBounds(20, 144, 61, 29);
+			panelActualiza.add(lblResidencia_2);
+			
+			JTextArea tEdad_1 = new JTextArea();
+			tEdad_1.setToolTipText("Ingrese la edad del asegurado");
+			tEdad_1.setOpaque(false);
+			tEdad_1.setForeground(new Color(47, 79, 79));
+			tEdad_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tEdad_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tEdad_1.setBounds(111, 148, 161, 21);
+			panelActualiza.add(tEdad_1);
+			
+			JLabel lblCedula_1 = new JLabel("Cedula:");
+			lblCedula_1.setForeground(new Color(47, 79, 79));
+			lblCedula_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblCedula_1.setBounds(20, 186, 61, 29);
+			panelActualiza.add(lblCedula_1);
+			
+			JLabel lblNumeroPoliza_1 = new JLabel("Poliza #: ");
+			lblNumeroPoliza_1.setForeground(new Color(47, 79, 79));
+			lblNumeroPoliza_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblNumeroPoliza_1.setBounds(20, 226, 81, 29);
+			panelActualiza.add(lblNumeroPoliza_1);
+			
+			JTextArea tCedula_1 = new JTextArea();
+			tCedula_1.setToolTipText("ingrese la identificacion del asegurado");
+			tCedula_1.setOpaque(false);
+			tCedula_1.setForeground(new Color(47, 79, 79));
+			tCedula_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tCedula_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tCedula_1.setBounds(111, 190, 161, 21);
+			panelActualiza.add(tCedula_1);
+			
+			JTextArea tNumeroPoliza_1 = new JTextArea();
+			tNumeroPoliza_1.setToolTipText("Numero de poliza del asegurado, consta de 3 digitos");
+			tNumeroPoliza_1.setOpaque(false);
+			tNumeroPoliza_1.setForeground(new Color(47, 79, 79));
+			tNumeroPoliza_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tNumeroPoliza_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tNumeroPoliza_1.setBounds(111, 228, 161, 21);
+			panelActualiza.add(tNumeroPoliza_1);
+			
+			JComboBox boxCategoriaPoliza_1 = new JComboBox();
+			boxCategoriaPoliza_1.setModel(new DefaultComboBoxModel(new String[] {"Elija categoria de poliza", "Individual", "Familiar"}));
+			boxCategoriaPoliza_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxCategoriaPoliza_1.setBounds(20, 266, 253, 29);
+			panelActualiza.add(boxCategoriaPoliza_1);
+			
+			JLabel lblDireccion_1 = new JLabel("Direccion:");
+			lblDireccion_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblDireccion_1.setForeground(new Color(47, 79, 79));
+			lblDireccion_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblDireccion_1.setBounds(105, 306, 86, 29);
+			panelActualiza.add(lblDireccion_1);
+			
+			JScrollPane sPDireccionAsegurado_1 = new JScrollPane();
+			sPDireccionAsegurado_1.setBounds(20, 346, 253, 91);
+			panelActualiza.add(sPDireccionAsegurado_1);
+			
+			JComboBox boxTipoServicio_1 = new JComboBox();
+			boxTipoServicio_1.setModel(new DefaultComboBoxModel(new String[] {"Selecciona tipo de servicio", "Compras", "Pago de servicios publicos", "Visita medica"}));
+			boxTipoServicio_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxTipoServicio_1.setBounds(312, 99, 235, 29);
+			panelActualiza.add(boxTipoServicio_1);
+			
+			JButton listo_1 = new JButton("Listo!");
+			listo_1.setToolTipText("finalizar de agregar los datos");
+			listo_1.setFont(new Font("Dialog", Font.BOLD, 13));
+			listo_1.setBounds(301, 408, 109, 29);
+			panelActualiza.add(listo_1);
+			
+			JButton btnBorraD_1 = new JButton("Cancelar");
+			btnBorraD_1.setToolTipText("refresca el menu");
+			btnBorraD_1.setFont(new Font("Dialog", Font.BOLD, 13));
+			btnBorraD_1.setBounds(438, 408, 109, 29);
+			panelActualiza.add(btnBorraD_1);
 			panelEliminar.setBackground(SystemColor.activeCaption);
 			panelEliminar.setBounds(124, 0, 612, 454);
 			BienvenidaAgente.add(panelEliminar);
