@@ -258,32 +258,11 @@ import javax.swing.JSplitPane;
 			
 			bienvenidaAsegurado.setLayout(null);
 			
-			panelInserta = new JPanel();
-			panelInserta.setVisible(false);
-			
 			panelMuestra = new JPanel();
 			panelMuestra.setVisible(false);
-			panelMuestra.setBackground(SystemColor.controlDkShadow);
-			panelMuestra.setBounds(112, 0, 624, 454);
-			bienvenidaAsegurado.add(panelMuestra);
-			panelMuestra.setLayout(null);
 			
-			JScrollPane scrollPane_2 = new JScrollPane();
-			scrollPane_2.setBounds(62, 79, 447, 241);
-			panelMuestra.add(scrollPane_2);
-			
-			JTextArea tMuestraDatosAsegurado = new JTextArea();
-			tMuestraDatosAsegurado.setEditable(false);
-			tMuestraDatosAsegurado.setToolTipText("Mostrando solicitudes en registro");
-			tMuestraDatosAsegurado.setFont(new Font("Sitka Subheading", Font.BOLD | Font.ITALIC, 14));
-			scrollPane_2.setViewportView(tMuestraDatosAsegurado);
-			
-			JLabel lblMuestraDatosAsegurado = new JLabel("Solicitudes");
-			lblMuestraDatosAsegurado.setForeground(Color.WHITE);
-			lblMuestraDatosAsegurado.setFont(new Font("Sitka Text", Font.BOLD, 15));
-			lblMuestraDatosAsegurado.setHorizontalAlignment(SwingConstants.CENTER);
-			lblMuestraDatosAsegurado.setBounds(155, 21, 243, 30);
-			panelMuestra.add(lblMuestraDatosAsegurado);
+			panelInserta = new JPanel();
+			panelInserta.setVisible(false);
 			panelInserta.setLayout(null);
 			panelInserta.setBackground(Color.LIGHT_GRAY);
 			panelInserta.setBounds(112, 0, 624, 447);
@@ -318,6 +297,17 @@ import javax.swing.JSplitPane;
 			panelPagoServicios.add(lblNewLabel_1);
 			
 			tMonto = new JTextArea();
+			tMonto.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					if(tMonto.getText().equalsIgnoreCase("Monto")) {
+						tMonto.setText("");
+			    	}
+					
+				}
+			});
 			tMonto.setText("Monto");
 			tMonto.setToolTipText("ingrese la identificacion del asegurado");
 			tMonto.setOpaque(false);
@@ -378,6 +368,54 @@ import javax.swing.JSplitPane;
 			sPDetalleMotivoVisita.setViewportView(tDetalleVisita);
 			
 			tEdad = new JTextArea();
+			tEdad.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(tEdad.getText()!=null) {
+						tEdad.setText("");
+				}
+			}
+			});
+			tEdad.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
+	                {
+                public void keyTyped(KeyEvent e)
+                {
+                    char caracter = e.getKeyChar();
+
+
+                    if(((caracter < '0') ||
+                            (caracter > '9')) &&
+                            (caracter != '\b' ))
+                    {
+                        e.consume();  // ignorar el evento de teclado
+                        lista.mensajeTemporizado("Edad debe contener solamente numeros", 1800);
+
+                    }
+                }
+            });
+			
+			
+			
+			
+			tEdad.addKeyListener(new KeyListener(){
+			   	 
+			   	public void keyTyped(KeyEvent e)
+			   	 
+			   	{if (tEdad.getText().length()==3) //LIMITA AL USER A SOLO AGREGAR EL NUMERO DEL PACIENTE QUE SE QUIERE ACTUALIZAR
+			   	 
+			   	     e.consume();
+			   			if(tEdad.getText().length()==3) {
+			   				lista.mensajeTemporizado("Edad no contiene mas de 3 digitos", 1800);
+			   			}
+			   	
+			   	}
+			   	 
+			   	public void keyPressed(KeyEvent arg0) {
+			   	}
+			   	 
+			   	public void keyReleased(KeyEvent arg0) {
+			   	}
+			   	});
 			tEdad.setToolTipText("Ingrese la edad del asegurado");
 			tEdad.setOpaque(false);
 			tEdad.setForeground(new Color(47, 79, 79));
@@ -435,6 +473,17 @@ import javax.swing.JSplitPane;
 					s.getA().ingresar(nombre, edad, dni, numPoliza, TipoPoliza, direccion);
 					lista.insertar(s);
 					lista.mensajeTemporizado("Solicitud agregada", 2000);
+					
+					tNombre.setText(null);
+					tEdad.setText(null);
+					tCedula.setText(null);
+					tDireccionAsegurado.setText(null);
+					tNumeroPoliza.setText(null);
+					boxCategoriaPoliza.setSelectedIndex(0);
+					boxEspecialidadMedica.setSelectedIndex(0);
+					boxTipoCompra.setSelectedIndex(0);
+					boxTipoPagoServicio.setSelectedIndex(0);
+					boxTipoServicio.setSelectedIndex(0);
 				}
 			});
 			listo.setToolTipText("finalizar de agregar los datos");
@@ -443,6 +492,11 @@ import javax.swing.JSplitPane;
 			panelInserta.add(listo);
 			
 			JButton btnBorraD = new JButton("Cancelar");
+			btnBorraD.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					panelInserta.setVisible(false);
+				}
+			});
 			btnBorraD.setToolTipText("refresca el menu");
 			btnBorraD.setFont(new Font("Dialog", Font.BOLD, 13));
 			btnBorraD.setBounds(443, 390, 109, 29);
@@ -455,12 +509,20 @@ import javax.swing.JSplitPane;
 			panelInserta.add(lblNombre);
 			
 			tNombre = new JTextArea();
+			tNombre.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(tNombre.getText()!=null) {
+						tNombre.setText("");
+				}
+			}
+			});
 			tNombre.setToolTipText("Ingrese el nombre del asegurado");
 			tNombre.setOpaque(false);
 			tNombre.setForeground(new Color(47, 79, 79));
 			tNombre.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
 			tNombre.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tNombre.setBounds(124, 17, 161, 21);
+			tNombre.setBounds(124, 31, 161, 21);
 			panelInserta.add(tNombre);
 			
 			JLabel lblCedula = new JLabel("Cedula:");
@@ -470,12 +532,60 @@ import javax.swing.JSplitPane;
 			panelInserta.add(lblCedula);
 			
 			tCedula = new JTextArea();
+			tCedula.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(tCedula.getText()!=null) {
+						tCedula.setText("");
+				}
+			}
+			});
 			tCedula.setToolTipText("ingrese la identificacion del asegurado");
 			tCedula.setOpaque(false);
 			tCedula.setForeground(new Color(47, 79, 79));
 			tCedula.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
 			tCedula.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
 			tCedula.setBounds(124, 108, 161, 21);
+			tCedula.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
+	                {
+                public void keyTyped(KeyEvent e)
+                {
+                    char caracter = e.getKeyChar();
+
+
+                    if(((caracter < '0') ||
+                            (caracter > '9')) &&
+                            (caracter != '\b' ))
+                    {
+                        e.consume();  // ignorar el evento de teclado
+                        lista.mensajeTemporizado("Cedula debe contener solamente numeros", 1800);
+
+                    }
+                }
+            });
+			
+			
+			
+			
+			tCedula.addKeyListener(new KeyListener(){
+			   	 
+			   	public void keyTyped(KeyEvent e)
+			   	 
+			   	{if (tCedula.getText().length()==7) //LIMITA AL USER A SOLO AGREGAR EL NUMERO DEL PACIENTE QUE SE QUIERE ACTUALIZAR
+			   	 
+			   	     e.consume();
+			   			if(tCedula.getText().length()==7) {
+			   				lista.mensajeTemporizado("Cedula consta de 7 digitos", 1800);
+			   			}
+			   	
+			   	}
+			   	 
+			   	public void keyPressed(KeyEvent arg0) {
+			   	}
+			   	 
+			   	public void keyReleased(KeyEvent arg0) {
+			   	}
+			   	});
 			panelInserta.add(tCedula);
 			
 			boxCategoriaPoliza = new JComboBox();
@@ -496,6 +606,14 @@ import javax.swing.JSplitPane;
 			panelInserta.add(sPDireccionAsegurado);
 			
 			tDireccionAsegurado = new JTextArea();
+			tDireccionAsegurado.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(tDireccionAsegurado.getText()!=null) {
+						tDireccionAsegurado.setText("");
+				}
+			}
+			});
 			tDireccionAsegurado.setToolTipText("Especifique la direccion del asegurado para poder asistirle");
 			tDireccionAsegurado.setFont(new Font("Palatino Linotype", Font.BOLD | Font.ITALIC, 14));
 			tDireccionAsegurado.setLineWrap(true);
@@ -505,6 +623,7 @@ import javax.swing.JSplitPane;
 			boxTipoServicio = new JComboBox();
 			boxTipoServicio.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					
 					if (boxTipoServicio.getSelectedItem().toString().equalsIgnoreCase("Compras")) {
 						panelCompras.setVisible(true);
 						panelPagoServicios.setVisible(false);
@@ -519,6 +638,10 @@ import javax.swing.JSplitPane;
 						panelCompras.setVisible(false);
 						panelPagoServicios.setVisible(false);
 						panelVisitaMedica.setVisible(true);
+					}else {
+						panelCompras.setVisible(false);
+						panelPagoServicios.setVisible(false);
+						panelVisitaMedica.setVisible(false);
 					}
 					
 				}
@@ -535,6 +658,14 @@ import javax.swing.JSplitPane;
 			panelInserta.add(lblNumeroPoliza);
 			
 			tNumeroPoliza = new JTextArea();
+			tNumeroPoliza.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(tNumeroPoliza.getText()!=null) {
+						tNumeroPoliza.setText("");
+				}
+			}
+			});
 			tNumeroPoliza.setToolTipText("Numero de poliza del asegurado, consta de 3 digitos");
 			tNumeroPoliza.setOpaque(false);
 			tNumeroPoliza.setForeground(new Color(47, 79, 79));
@@ -596,6 +727,27 @@ import javax.swing.JSplitPane;
 			
 			
 			panelInserta.add(tNumeroPoliza);
+			panelMuestra.setBackground(SystemColor.controlDkShadow);
+			panelMuestra.setBounds(112, 0, 624, 454);
+			bienvenidaAsegurado.add(panelMuestra);
+			panelMuestra.setLayout(null);
+			
+			JScrollPane scrollPane_2 = new JScrollPane();
+			scrollPane_2.setBounds(62, 79, 447, 241);
+			panelMuestra.add(scrollPane_2);
+			
+			JTextArea tMuestraDatosAsegurado = new JTextArea();
+			tMuestraDatosAsegurado.setEditable(false);
+			tMuestraDatosAsegurado.setToolTipText("Mostrando solicitudes en registro");
+			tMuestraDatosAsegurado.setFont(new Font("Sitka Subheading", Font.BOLD | Font.ITALIC, 14));
+			scrollPane_2.setViewportView(tMuestraDatosAsegurado);
+			
+			JLabel lblMuestraDatosAsegurado = new JLabel("Solicitudes");
+			lblMuestraDatosAsegurado.setForeground(Color.WHITE);
+			lblMuestraDatosAsegurado.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblMuestraDatosAsegurado.setHorizontalAlignment(SwingConstants.CENTER);
+			lblMuestraDatosAsegurado.setBounds(155, 21, 243, 30);
+			panelMuestra.add(lblMuestraDatosAsegurado);
 			
 			JPanel panelMenuOpciones = new JPanel();
 			panelMenuOpciones.setBackground(Color.DARK_GRAY);
@@ -656,13 +808,19 @@ import javax.swing.JSplitPane;
 					btnMostrar.setBackground(new Color (0, 0, 0, 50));
 					btnMostrar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							//CardLayout c = (CardLayout)(contentPane.getLayout());
-						//	c.show(contentPane, "t2");
+							
+							if (lista.elementosLista()==false) {
+								
+								lista.mensajeTemporizado("No existen solicitudes", 1000);
+								panelMuestra.setVisible(false);
+							}else {
+								
 						
 							panelInserta.setVisible(false);
 							panelMuestra.setVisible(true);
-							//tDatosBuscar.setText(lista.acumulaDatos());
 							tMuestraDatosAsegurado.setText(lista.mostrar());
+							
+							}
 							
 						}
 					});
@@ -1119,12 +1277,235 @@ import javax.swing.JSplitPane;
 			
 			panelEliminar = new JPanel();
 			panelEliminar.setVisible(false);
+			
+			JPanel panelActualiza = new JPanel();
+			panelActualiza.setBackground(Color.LIGHT_GRAY);
+			panelActualiza.setBounds(124, 0, 608, 448);
+			BienvenidaAgente.add(panelActualiza);
+			panelActualiza.setLayout(null);
+			
+			JPanel panelPagoServiciosActualizar = new JPanel();
+			panelPagoServiciosActualizar.setVisible(false);
+			panelPagoServiciosActualizar.setBounds(301, 144, 258, 239);
+			panelActualiza.add(panelPagoServiciosActualizar);
+			panelPagoServiciosActualizar.setLayout(null);
+			
+			JComboBox boxTipoPagoServicio_1 = new JComboBox();
+			boxTipoPagoServicio_1.setModel(new DefaultComboBoxModel(new String[] {" Tipo de servicio a pagar", "Publico", "Municipal"}));
+			boxTipoPagoServicio_1.setToolTipText("Seleccione el tipo de servicio a pagar");
+			boxTipoPagoServicio_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxTipoPagoServicio_1.setBounds(10, 11, 236, 27);
+			panelPagoServiciosActualizar.add(boxTipoPagoServicio_1);
+			
+			JLabel lblNewLabel_1_1 = new JLabel("Especifica servicio");
+			lblNewLabel_1_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
+			lblNewLabel_1_1.setBounds(10, 86, 129, 19);
+			panelPagoServiciosActualizar.add(lblNewLabel_1_1);
+			
+			JScrollPane sPDetallePagoServicio_1 = new JScrollPane();
+			sPDetallePagoServicio_1.setBounds(10, 116, 236, 34);
+			panelPagoServiciosActualizar.add(sPDetallePagoServicio_1);
+			
+			JTextArea tMonto_1 = new JTextArea();
+			tMonto_1.setToolTipText("ingrese la identificacion del asegurado");
+			tMonto_1.setText("Monto");
+			tMonto_1.setOpaque(false);
+			tMonto_1.setForeground(new Color(47, 79, 79));
+			tMonto_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tMonto_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tMonto_1.setBounds(10, 171, 161, 21);
+			panelPagoServiciosActualizar.add(tMonto_1);
+			
+			JPanel panelVisitaMedicaActualizar = new JPanel();
+			panelVisitaMedicaActualizar.setBounds(301, 144, 258, 239);
+			panelActualiza.add(panelVisitaMedicaActualizar);
+			panelVisitaMedicaActualizar.setLayout(null);
+			
+			JComboBox boxEspecialidadMedica_1 = new JComboBox();
+			boxEspecialidadMedica_1.setModel(new DefaultComboBoxModel(new String[] {"Elije especialidad medica", "Medicina General", "Fisioterapia", "Psicologia"}));
+			boxEspecialidadMedica_1.setToolTipText("Escoge la especialidad medica deseada");
+			boxEspecialidadMedica_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxEspecialidadMedica_1.setBounds(10, 11, 238, 22);
+			panelVisitaMedicaActualizar.add(boxEspecialidadMedica_1);
+			
+			JLabel lblNewLabel_3_1 = new JLabel("Detalle motivo de visita");
+			lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_3_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
+			lblNewLabel_3_1.setBounds(21, 80, 214, 22);
+			panelVisitaMedicaActualizar.add(lblNewLabel_3_1);
+			
+			JScrollPane sPDetalleMotivoVisita_1 = new JScrollPane();
+			sPDetalleMotivoVisita_1.setBounds(12, 105, 236, 123);
+			panelVisitaMedicaActualizar.add(sPDetalleMotivoVisita_1);
+			
+			JPanel panelComprasActualiza = new JPanel();
+			panelComprasActualiza.setBounds(301, 144, 258, 239);
+			panelActualiza.add(panelComprasActualiza);
+			panelComprasActualiza.setLayout(null);
+			
+			JComboBox boxTipoCompra_1 = new JComboBox();
+			boxTipoCompra_1.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo de compra", "Supermercado", "Farmacia"}));
+			boxTipoCompra_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxTipoCompra_1.setBounds(10, 11, 238, 22);
+			panelComprasActualiza.add(boxTipoCompra_1);
+			
+			JScrollPane sPDetalleCompra_1 = new JScrollPane();
+			sPDetalleCompra_1.setBounds(14, 118, 234, 98);
+			panelComprasActualiza.add(sPDetalleCompra_1);
+			
+			JLabel lblDetalleCompra_1 = new JLabel("Detalle de compra");
+			lblDetalleCompra_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblDetalleCompra_1.setFont(new Font("Sitka Text", Font.BOLD, 14));
+			lblDetalleCompra_1.setBounds(51, 93, 161, 14);
+			panelComprasActualiza.add(lblDetalleCompra_1);
+			
+			JLabel lblNombre_2 = new JLabel("Nombre:");
+			lblNombre_2.setForeground(new Color(47, 79, 79));
+			lblNombre_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblNombre_2.setBounds(20, 104, 81, 16);
+			panelActualiza.add(lblNombre_2);
+			
+			JTextArea tNombre_1 = new JTextArea();
+			tNombre_1.setToolTipText("Ingrese el nombre del asegurado");
+			tNombre_1.setOpaque(false);
+			tNombre_1.setForeground(new Color(47, 79, 79));
+			tNombre_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tNombre_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tNombre_1.setBounds(111, 102, 161, 21);
+			panelActualiza.add(tNombre_1);
+			
+			JLabel lblResidencia_2 = new JLabel("Edad:");
+			lblResidencia_2.setForeground(new Color(47, 79, 79));
+			lblResidencia_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblResidencia_2.setBounds(20, 144, 61, 29);
+			panelActualiza.add(lblResidencia_2);
+			
+			JTextArea tEdad_1 = new JTextArea();
+			tEdad_1.setToolTipText("Ingrese la edad del asegurado");
+			tEdad_1.setOpaque(false);
+			tEdad_1.setForeground(new Color(47, 79, 79));
+			tEdad_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tEdad_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tEdad_1.setBounds(111, 148, 161, 21);
+			panelActualiza.add(tEdad_1);
+			
+			JLabel lblCedula_1 = new JLabel("Cedula:");
+			lblCedula_1.setForeground(new Color(47, 79, 79));
+			lblCedula_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblCedula_1.setBounds(20, 186, 61, 29);
+			panelActualiza.add(lblCedula_1);
+			
+			JLabel lblNumeroPoliza_1 = new JLabel("Poliza #: ");
+			lblNumeroPoliza_1.setForeground(new Color(47, 79, 79));
+			lblNumeroPoliza_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblNumeroPoliza_1.setBounds(20, 226, 81, 29);
+			panelActualiza.add(lblNumeroPoliza_1);
+			
+			JTextArea tCedula_1 = new JTextArea();
+			tCedula_1.setToolTipText("ingrese la identificacion del asegurado");
+			tCedula_1.setOpaque(false);
+			tCedula_1.setForeground(new Color(47, 79, 79));
+			tCedula_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tCedula_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tCedula_1.setBounds(111, 190, 161, 21);
+			panelActualiza.add(tCedula_1);
+			
+			JTextArea tNumeroPoliza_1 = new JTextArea();
+			tNumeroPoliza_1.setToolTipText("Numero de poliza del asegurado, consta de 3 digitos");
+			tNumeroPoliza_1.setOpaque(false);
+			tNumeroPoliza_1.setForeground(new Color(47, 79, 79));
+			tNumeroPoliza_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tNumeroPoliza_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tNumeroPoliza_1.setBounds(111, 228, 161, 21);
+			panelActualiza.add(tNumeroPoliza_1);
+			
+			JComboBox boxCategoriaPoliza_1 = new JComboBox();
+			boxCategoriaPoliza_1.setModel(new DefaultComboBoxModel(new String[] {"Elija categoria de poliza", "Individual", "Familiar"}));
+			boxCategoriaPoliza_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxCategoriaPoliza_1.setBounds(20, 266, 253, 29);
+			panelActualiza.add(boxCategoriaPoliza_1);
+			
+			JLabel lblDireccion_1 = new JLabel("Direccion:");
+			lblDireccion_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblDireccion_1.setForeground(new Color(47, 79, 79));
+			lblDireccion_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblDireccion_1.setBounds(105, 306, 86, 29);
+			panelActualiza.add(lblDireccion_1);
+			
+			JScrollPane sPDireccionAsegurado_1 = new JScrollPane();
+			sPDireccionAsegurado_1.setBounds(20, 346, 253, 91);
+			panelActualiza.add(sPDireccionAsegurado_1);
+			
+			JComboBox boxTipoServicio_1 = new JComboBox();
+			boxTipoServicio_1.setModel(new DefaultComboBoxModel(new String[] {"Selecciona tipo de servicio", "Compras", "Pago de servicios publicos", "Visita medica"}));
+			boxTipoServicio_1.setFont(new Font("Sitka Text", Font.BOLD, 12));
+			boxTipoServicio_1.setBounds(312, 99, 235, 29);
+			panelActualiza.add(boxTipoServicio_1);
+			
+			JButton listo_1 = new JButton("Listo!");
+			listo_1.setToolTipText("finalizar de agregar los datos");
+			listo_1.setFont(new Font("Dialog", Font.BOLD, 13));
+			listo_1.setBounds(301, 408, 109, 29);
+			panelActualiza.add(listo_1);
+			
+			JButton btnBorraD_1 = new JButton("Cancelar");
+			btnBorraD_1.setToolTipText("refresca el menu");
+			btnBorraD_1.setFont(new Font("Dialog", Font.BOLD, 13));
+			btnBorraD_1.setBounds(438, 408, 109, 29);
+			panelActualiza.add(btnBorraD_1);
 			panelEliminar.setBackground(SystemColor.activeCaption);
 			panelEliminar.setBounds(124, 0, 612, 454);
 			BienvenidaAgente.add(panelEliminar);
 			panelEliminar.setLayout(null);
 			
 			JTextArea tPolizaEliminar = new JTextArea();
+			tPolizaEliminar.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					tPolizaEliminar.setText(null);
+				}
+			});
+			
+			tPolizaEliminar.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
+	                {
+                public void keyTyped(KeyEvent e)
+                {
+                    char caracter = e.getKeyChar();
+
+
+                    if(((caracter < '0') ||
+                            (caracter > '9')) &&
+                            (caracter != '\b' ))
+                    {
+                        e.consume();  // ignorar el evento de teclado
+                        lista.mensajeTemporizado("Poliza debe contener solamente numeros", 1800);
+
+                    }
+                }
+            });
+			
+			
+			
+			
+			tPolizaEliminar.addKeyListener(new KeyListener(){
+			   	 
+			   	public void keyTyped(KeyEvent e)
+			   	 
+			   	{if (tPolizaEliminar.getText().length()==3) //LIMITA AL USER A SOLO AGREGAR EL NUMERO DEL PACIENTE QUE SE QUIERE ACTUALIZAR
+			   	 
+			   	     e.consume();
+			   			if(tPolizaEliminar.getText().length()==3) {
+			   				lista.mensajeTemporizado("Poliza consta de 3 digitos", 1800);
+			   			}
+			   	
+			   	}
+			   	 
+			   	public void keyPressed(KeyEvent arg0) {
+			   	}
+			   	 
+			   	public void keyReleased(KeyEvent arg0) {
+			   	}
+			   	});
 			tPolizaEliminar.setToolTipText("Especifique numero de poliza a buscar");
 			tPolizaEliminar.setText("Poliza a Eliminar");
 			tPolizaEliminar.setOpaque(false);
@@ -1138,6 +1519,7 @@ import javax.swing.JSplitPane;
 				public void actionPerformed(ActionEvent e) {
 					lista.suprimir(tPolizaEliminar.getText());
 					tSolicitudesEliminar.setText(lista.acumulaDatos());
+					tPolizaEliminar.setText(null);
 				}
 			});
 			btnEliminaSolicitud.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/DeleteOneUser48px.png")));
@@ -1170,6 +1552,7 @@ import javax.swing.JSplitPane;
 			panelEliminar.add(btnEliminaTodo);
 			
 			JPanel panelBuscarAgente = new JPanel();
+			panelBuscarAgente.setVisible(false);
 			panelBuscarAgente.setBackground(new Color(128, 128, 0));
 			panelBuscarAgente.setBounds(124, 0, 612, 454);
 			BienvenidaAgente.add(panelBuscarAgente);
@@ -1181,7 +1564,7 @@ import javax.swing.JSplitPane;
 				public void mouseClicked(MouseEvent e) {
 					
 					
-					tPolizaBuscar.selectAll();
+					tPolizaBuscar.setText(null);;
 				}
 			});
 			tPolizaBuscar.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
@@ -1263,12 +1646,17 @@ import javax.swing.JSplitPane;
 			JButton btnBuscar = new JButton("Buscar");
 			btnBuscar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					panelBuscarAgente.setVisible(true);
-					panelEliminar.setVisible(false);
 					
-					
-					
-					
+					if (lista.elementosLista()==false) {
+						panelBuscarAgente.setVisible(false);
+						panelEliminar.setVisible(false);
+						lista.mensajeTemporizado("No existen Solicitudes", 1000);
+					} else {
+						panelBuscarAgente.setVisible(true);
+						panelEliminar.setVisible(false);
+
+					}
+
 				}
 			});
 			btnBuscar.setOpaque(false);
@@ -1302,9 +1690,16 @@ import javax.swing.JSplitPane;
 			JButton btnEliminar = new JButton("Eliminar");
 			btnEliminar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					panelBuscarAgente.setVisible(false);
-					panelEliminar.setVisible(true);
-					tSolicitudesEliminar.setText(lista.acumulaDatos());
+					
+					if (lista.elementosLista()==false) {
+						lista.mensajeTemporizado("No existen solicitudes", 1000);
+						panelBuscarAgente.setVisible(false);
+						panelEliminar.setVisible(false);
+					} else {
+						panelBuscarAgente.setVisible(false);
+						panelEliminar.setVisible(true);
+						tSolicitudesEliminar.setText(lista.acumulaDatos());
+					}
 				}
 			});
 			btnEliminar.setBounds(0, 108, 123, 51);

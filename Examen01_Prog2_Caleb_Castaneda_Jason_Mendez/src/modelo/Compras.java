@@ -43,7 +43,7 @@ public class Compras extends Servicio {
 		
 		 mensaje+="COMPRAS \n\n"
 		 		+ "CATEGORIA: "+ getTipoCompra()+"\n"
-		 		+ "DETALLE: "+getDetalle() +"\n\n";
+		 		+ "DETALLE: \n"+getDetalle() +"\n\n";
 		
 		return mensaje;
 		
