@@ -522,7 +522,7 @@ import javax.swing.JSplitPane;
 			tNombre.setForeground(new Color(47, 79, 79));
 			tNombre.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
 			tNombre.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
-			tNombre.setBounds(124, 17, 161, 21);
+			tNombre.setBounds(124, 31, 161, 21);
 			panelInserta.add(tNombre);
 			
 			JLabel lblCedula = new JLabel("Cedula:");
@@ -1277,6 +1277,27 @@ import javax.swing.JSplitPane;
 			
 			panelEliminar = new JPanel();
 			panelEliminar.setVisible(false);
+			
+			JPanel panelActualiza = new JPanel();
+			panelActualiza.setBackground(Color.LIGHT_GRAY);
+			panelActualiza.setBounds(124, 0, 608, 448);
+			BienvenidaAgente.add(panelActualiza);
+			panelActualiza.setLayout(null);
+			
+			JLabel lblNombre_2 = new JLabel("Nombre:");
+			lblNombre_2.setForeground(new Color(47, 79, 79));
+			lblNombre_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
+			lblNombre_2.setBounds(10, 58, 81, 16);
+			panelActualiza.add(lblNombre_2);
+			
+			JTextArea tNombre_1 = new JTextArea();
+			tNombre_1.setToolTipText("Ingrese el nombre del asegurado");
+			tNombre_1.setOpaque(false);
+			tNombre_1.setForeground(new Color(47, 79, 79));
+			tNombre_1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tNombre_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tNombre_1.setBounds(101, 56, 161, 21);
+			panelActualiza.add(tNombre_1);
 			panelEliminar.setBackground(SystemColor.activeCaption);
 			panelEliminar.setBounds(124, 0, 612, 454);
 			BienvenidaAgente.add(panelEliminar);
