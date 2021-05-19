@@ -110,7 +110,6 @@ import javax.swing.JSplitPane;
 		private JTextArea tDetallePagoServicio;
 		private JTextArea tNumeroPoliza;
 		private JTextArea tMonto;
-		private JTextArea tBuscarAgente;
 		private JTextArea tSolicitudesEliminar;
 		
 		//ComboBox///
@@ -1470,20 +1469,14 @@ import javax.swing.JSplitPane;
 			boxTipoServicioPac.setBounds(312, 99, 235, 29);
 			panelActualiza.add(boxTipoServicioPac);
 			
-			JButton bListoPac = new JButton("Listo!");
+			JButton bListoPac = new JButton("Actualizar!");
 			bListoPac.setToolTipText("finalizar de agregar los datos");
 			bListoPac.setFont(new Font("Dialog", Font.BOLD, 13));
-			bListoPac.setBounds(311, 394, 109, 29);
+			bListoPac.setBounds(380, 394, 109, 29);
 			panelActualiza.add(bListoPac);
 			
-			JButton bCancelarPac = new JButton("Cancelar");
-			bCancelarPac.setToolTipText("refresca el menu");
-			bCancelarPac.setFont(new Font("Dialog", Font.BOLD, 13));
-			bCancelarPac.setBounds(438, 394, 109, 29);
-			panelActualiza.add(bCancelarPac);
-			
 			JScrollPane sPMuestraAc = new JScrollPane();
-			sPMuestraAc.setBounds(20, 42, 309, 41);
+			sPMuestraAc.setBounds(20, 52, 258, 41);
 			panelActualiza.add(sPMuestraAc);
 			
 			JTextArea tMuestraAc = new JTextArea();
@@ -1556,7 +1549,7 @@ import javax.swing.JSplitPane;
 			bAnteriorPac.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/left.png")));
 			bAnteriorPac.setToolTipText("mostrar solicitud anterior");
 			bAnteriorPac.setFont(new Font("Dialog", Font.BOLD, 13));
-			bAnteriorPac.setBounds(365, 31, 55, 57);
+			bAnteriorPac.setBounds(365, 41, 55, 57);
 			panelActualiza.add(bAnteriorPac);
 			
 			JButton bSiguientePac = new JButton("");
@@ -1625,14 +1618,91 @@ import javax.swing.JSplitPane;
 			bSiguientePac.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/Right.png")));
 			bSiguientePac.setToolTipText("mostrar siguiente solicitud");
 			bSiguientePac.setFont(new Font("Dialog", Font.BOLD, 13));
-			bSiguientePac.setBounds(453, 31, 55, 57);
+			bSiguientePac.setBounds(448, 41, 55, 57);
 			panelActualiza.add(bSiguientePac);
 			
-			JLabel lblNewLabel_2 = new JLabel("Registro de solicitudes:");
-			lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 13));
-			lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel_2.setBounds(20, 11, 253, 21);
-			panelActualiza.add(lblNewLabel_2);
+			JTextArea tBuscaPolizaPac = new JTextArea();
+			tBuscaPolizaPac.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					if(tBuscaPolizaPac.getText().equalsIgnoreCase("poliza de solicitud a buscar")) {
+						tBuscaPolizaPac.selectAll();
+						tBuscaPolizaPac.setText("");
+			    	}
+					
+				}
+			});
+			tBuscaPolizaPac.setText("poliza de solicitud a buscar");
+			tBuscaPolizaPac.setToolTipText("Ingrese la poliza de la solicitud a mostrar ");
+			tBuscaPolizaPac.setOpaque(false);
+			tBuscaPolizaPac.setForeground(new Color(47, 79, 79));
+			tBuscaPolizaPac.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 13));
+			tBuscaPolizaPac.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(47, 79, 79)));
+			tBuscaPolizaPac.setBounds(111, 11, 174, 21);
+			
+			panelActualiza.add(tBuscaPolizaPac);
+			
+			JButton bSearchPac = new JButton("");
+			bSearchPac.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					
+					s = lista.consultar(tBuscaPolizaPac.getText());
+		
+					tMuestraAc.setText(lista.acumulaDatos());
+					tNombrePac.setText(s.getA().getNombre());
+					tEdadPac.setText(s.getA().getEdad());
+					tCedulaPac.setText(s.getA().getCedula());
+					tNumeroPolizaPac.setText(s.getA().getNumPoliza());
+					boxCategoriaPolizaPac.setSelectedItem(s.getA().getCategoria());
+					tDireccionAseguradoPac.setText(s.getA().getDireccion());
+					
+					boxTipoServicioPac.setSelectedItem(s.getNombreServicio());
+					
+					if(boxTipoServicioPac.getSelectedIndex()==1) {
+						panelPagoServiciosActualizar.setVisible(false);
+						panelVisitaMedicaActualizar.setVisible(false);
+						panelComprasActualiza.setVisible(true);
+						
+						boxTipoCompraPac.setSelectedItem(s.getC().getTipoCompra());
+						tCompraPac.setText(s.getC().getDetalle());
+						
+					}else if(boxTipoServicioPac.getSelectedIndex()==2){
+						
+						panelVisitaMedicaActualizar.setVisible(false);
+						panelComprasActualiza.setVisible(false);
+						
+						panelPagoServiciosActualizar.setVisible(true);
+						boxTipoPagoServicioPac.setSelectedItem(s.getP().getServicioPagar());
+						tServicioPac.setText(s.getP().getDetalle());
+						tMontoPac.setText(s.getP().getMonto());
+						
+						
+					}else if(boxTipoServicioPac.getSelectedIndex()==3) {
+						panelVisitaMedicaActualizar.setVisible(false);
+						panelComprasActualiza.setVisible(false);
+						panelVisitaMedicaActualizar.setVisible(true);
+						boxEspecialidadMedicaPac.setSelectedItem(s.getV().getEspecialidadMedica());
+						tMotivoVisitaPac.setText(s.getV().getDetalle());
+						
+					}
+					
+
+					
+					
+					
+				}
+			});
+			
+			
+			
+			bSearchPac.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/search2.png")));
+			bSearchPac.setContentAreaFilled(false);
+			bSearchPac.setToolTipText("finalizar de agregar los datos");
+			bSearchPac.setFont(new Font("Dialog", Font.BOLD, 13));
+			bSearchPac.setBounds(296, 0, 41, 41);
+			panelActualiza.add(bSearchPac);
 			panelEliminar.setBackground(SystemColor.activeCaption);
 			panelEliminar.setBounds(124, 0, 612, 454);
 			BienvenidaAgente.add(panelEliminar);
@@ -1731,128 +1801,11 @@ import javax.swing.JSplitPane;
 			btnEliminaTodo.setBounds(416, 27, 61, 60);
 			panelEliminar.add(btnEliminaTodo);
 			
-			JPanel panelBuscarAgente = new JPanel();
-			panelBuscarAgente.setVisible(false);
-			panelBuscarAgente.setBackground(new Color(128, 128, 0));
-			panelBuscarAgente.setBounds(124, 0, 612, 454);
-			BienvenidaAgente.add(panelBuscarAgente);
-			panelBuscarAgente.setLayout(null);
-			
-			JTextArea tPolizaBuscar = new JTextArea();
-			tPolizaBuscar.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-					
-					tPolizaBuscar.setText(null);;
-				}
-			});
-			tPolizaBuscar.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-	                {
-                public void keyTyped(KeyEvent e)
-                {
-                    char caracter = e.getKeyChar();
-
-
-                    if(((caracter < '0') ||
-                            (caracter > '9')) &&
-                            (caracter != '\b' ))
-                    {
-                        e.consume();  // ignorar el evento de teclado
-		   				lista.mensajeTemporizado("Ingrese solo numeros", 1800);
-
-                    }
-                }
-            });
-			
-			tPolizaBuscar.addKeyListener(new KeyListener(){
-			   	 
-			   	public void keyTyped(KeyEvent e)
-			   	 
-			   	{if (tPolizaBuscar.getText().length()==3) //LIMITA AL USER A SOLO AGREGAR EL NUMERO DEL PACIENTE QUE SE QUIERE ACTUALIZAR
-			   	 
-			   	     e.consume();
-			   			if(tPolizaBuscar.getText().length()==3) {
-			   				lista.mensajeTemporizado("Poliza debe contener 3 digitos", 1800);
-			   			}
-			   	
-			   	}
-			   	 
-			   	public void keyPressed(KeyEvent arg0) {
-			   	}
-			   	 
-			   	public void keyReleased(KeyEvent arg0) {
-			   	}
-			   	});
-			
-			
-			
-			tPolizaBuscar.setToolTipText("Especifique numero de poliza a buscar");
-			tPolizaBuscar.setText("Poliza a buscar");
-			tPolizaBuscar.setOpaque(false);
-			tPolizaBuscar.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tPolizaBuscar.setBorder(new MatteBorder(0, 0, 3, 0, (Color) SystemColor.activeCaption));
-			tPolizaBuscar.setBounds(218, 28, 122, 22);
-			panelBuscarAgente.add(tPolizaBuscar);
-			
-			JButton btnBuscarAgente = new JButton("");
-			btnBuscarAgente.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					tBuscarAgente.setText(lista.consultar(tPolizaBuscar.getText()));
-				}
-			});
-			btnBuscarAgente.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/searchAsegurado.png")));
-			btnBuscarAgente.setToolTipText("Presiona para buscar solicitud");
-			btnBuscarAgente.setContentAreaFilled(false);
-			btnBuscarAgente.setBorder(null);
-			btnBuscarAgente.setBounds(360, 11, 51, 57);
-			panelBuscarAgente.add(btnBuscarAgente);
-			
-			JScrollPane sPBuscarAgente = new JScrollPane();
-			sPBuscarAgente.setBounds(35, 89, 524, 278);
-			panelBuscarAgente.add(sPBuscarAgente);
-			
-			tBuscarAgente = new JTextArea();
-			tBuscarAgente.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 14));
-			tBuscarAgente.setEditable(false);
-			sPBuscarAgente.setViewportView(tBuscarAgente);
-			
 			JPanel panelBotonesMenuAgente = new JPanel();
 			panelBotonesMenuAgente.setBackground(Color.DARK_GRAY);
 			panelBotonesMenuAgente.setBounds(0, 0, 125, 454);
 			BienvenidaAgente.add(panelBotonesMenuAgente);
 			panelBotonesMenuAgente.setLayout(null);
-			
-			JButton btnBuscar = new JButton("");
-			btnBuscar.setContentAreaFilled(false);
-			btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnBuscar.setBorder(null);
-			btnBuscar.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/Search48.png")));
-			btnBuscar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-					if (lista.elementosLista()==false) {
-						panelBuscarAgente.setVisible(false);
-						panelEliminar.setVisible(false);
-						panelActualiza.setVisible(false);
-						lista.mensajeTemporizado("No existen Solicitudes", 1000);
-					} else {
-						panelBuscarAgente.setVisible(true);
-						panelEliminar.setVisible(false);
-						panelActualiza.setVisible(false);
-
-					}
-
-				}
-			});
-			btnBuscar.setOpaque(false);
-			btnBuscar.setBounds(33, 11, 52, 51);
-			panelBotonesMenuAgente.add(btnBuscar);
-			btnBuscar.setToolTipText("Buscar solicitudes registradas");
-			btnBuscar.setHorizontalAlignment(SwingConstants.LEFT);
-			btnBuscar.setForeground(Color.WHITE);
-			btnBuscar.setFont(new Font("SimSun", Font.BOLD, 15));
-			btnBuscar.setBackground(new Color(0, 0, 0, 50));
 			
 			JButton bActualiza = new JButton("");
 			bActualiza.setContentAreaFilled(false);
@@ -1863,7 +1816,7 @@ import javax.swing.JSplitPane;
 				public void actionPerformed(ActionEvent e) {
 					
 					if (lista.elementosLista()==false) {
-						panelBuscarAgente.setVisible(false);
+						
 						panelEliminar.setVisible(false);
 						panelActualiza.setVisible(false);
 						lista.mensajeTemporizado("No existen Solicitudes", 1000);
@@ -1872,7 +1825,7 @@ import javax.swing.JSplitPane;
 						 
 						panelActualiza.setVisible(true);
 						panelEliminar.setVisible(false);
-						panelBuscarAgente.setVisible(false);
+						
 			
 						tMuestraAc.setText(lista.acumulaDatos());
 						tNombrePac.setText(s.getA().getNombre());
@@ -1908,7 +1861,7 @@ import javax.swing.JSplitPane;
 					
 				}
 			});
-			bActualiza.setBounds(33, 77, 52, 51);
+			bActualiza.setBounds(33, 29, 52, 51);
 			panelBotonesMenuAgente.add(bActualiza);
 			bActualiza.setToolTipText("actualiza alguna de las solicitudes de los asegurados...");
 			bActualiza.setOpaque(false);
@@ -1927,18 +1880,18 @@ import javax.swing.JSplitPane;
 					
 					if (lista.elementosLista()==false) {
 						lista.mensajeTemporizado("No existen solicitudes", 1000);
-						panelBuscarAgente.setVisible(false);
+						
 						panelActualiza.setVisible(false);
 						panelEliminar.setVisible(false);
 					} else {
-						panelBuscarAgente.setVisible(false);
+						
 						panelEliminar.setVisible(true);
 						panelActualiza.setVisible(false);
 						tSolicitudesEliminar.setText(lista.acumulaDatos());
 					}
 				}
 			});
-			btnEliminar.setBounds(33, 159, 52, 51);
+			btnEliminar.setBounds(33, 111, 52, 51);
 			panelBotonesMenuAgente.add(btnEliminar);
 			btnEliminar.setToolTipText("elimina uno o bien todos las solicitudes registradas");
 			btnEliminar.setOpaque(false);

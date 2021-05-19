@@ -66,8 +66,8 @@ public String mostrar(int i) {//recibe numero de poliza
 			
 			
 			
-			public String consultar(String d) {//
-				String mensaje= "";
+			public SolicitudSeguroSolidario consultar(String d) {//
+				SolicitudSeguroSolidario s = new SolicitudSeguroSolidario();
 					
 					try {
 						if(solicitudes.isEmpty()) {///Si esta vacia se despliega el memnsaje
@@ -76,7 +76,7 @@ public String mostrar(int i) {//recibe numero de poliza
 						
 								for (int i = 0; i < solicitudes.size(); i++) {
 									if(solicitudes.get(i).getA().getNumPoliza().equalsIgnoreCase(d)) {
-										mensaje= solicitudes.get(i).mostrar();
+									s = solicitudes.get(i);
 								}else {
 									
 								}
@@ -89,7 +89,7 @@ public String mostrar(int i) {//recibe numero de poliza
 						}
 					
 					
-					return mensaje;
+					return s;
 			}
 			
 			public SolicitudSeguroSolidario buscar(int d) {//METODO PARA BUSCAR A UN ASEGURADO EN ESPECIFICO, LA VARIABEL "d" REFERENTE A DATO, SE UTILIZARA PARA RECIBIR EL DATO DE INGRESADO EN GUI
