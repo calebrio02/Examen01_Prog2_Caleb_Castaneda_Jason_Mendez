@@ -78,8 +78,6 @@ public String mostrar(int i) {//recibe numero de poliza
 									if(solicitudes.get(i).getA().getNumPoliza().equalsIgnoreCase(d)) {
 									s = solicitudes.get(i);
 									s.setIndiceSolicitud(i);
-								}else {
-									
 								}
 							
 						}

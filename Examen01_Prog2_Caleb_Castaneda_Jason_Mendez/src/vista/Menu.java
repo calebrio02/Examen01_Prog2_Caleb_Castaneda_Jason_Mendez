@@ -1649,7 +1649,7 @@ import javax.swing.JSplitPane;
 					
 					
 					s = lista.consultar(tBuscaPolizaPac.getText());
-					indiceModificar= s.getIndiceSolicitud();
+					indiceModificar= (s.getIndiceSolicitud()+1);
 		
 					tMuestraAc.setText(lista.acumulaDatos());
 					tNombrePac.setText(s.getA().getNombre());
