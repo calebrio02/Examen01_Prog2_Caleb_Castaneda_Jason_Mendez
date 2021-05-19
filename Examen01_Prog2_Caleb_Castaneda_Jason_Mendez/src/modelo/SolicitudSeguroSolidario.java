@@ -120,7 +120,7 @@ public class SolicitudSeguroSolidario {
 		 if(tipo.equalsIgnoreCase("compras")) {
 			 mensaje= c.muestra();
 			 
-		 }else if(tipo.equalsIgnoreCase("Pago de Servicios Publicos")) {
+		 }else if(tipo.equalsIgnoreCase("Pago de servicios publicos")) {
 			 mensaje= p.muestra();
 			 
 		 }else if(tipo.equalsIgnoreCase("visita medica")) {

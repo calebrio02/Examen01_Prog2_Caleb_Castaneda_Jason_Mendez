@@ -2,16 +2,20 @@ package modelo;
 
 public class VisitaMedica extends Servicio {
 	
-	private String motivo;
+	private String EspecialidadMedica;
 	private String detalle;
 
-	public String getMotivo() {
-		return motivo;
+	
+	
+	
+	public String getEspecialidadMedica() {
+		return EspecialidadMedica;
 	}
 
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
+	public void setEspecialidadMedica(String especialidadMedica) {
+		EspecialidadMedica = especialidadMedica;
 	}
+	
 
 	public String getDetalle() {
 		return detalle;
@@ -31,7 +35,7 @@ public class VisitaMedica extends Servicio {
 		String mensaje ="";
 		
 		 mensaje+="VISITA MEDICA \n\n"
-		 		+ "MOTIVO DE VISITA: "+ getMotivo()+"\n"
+		 		+ "MOTIVO DE VISITA: "+ getEspecialidadMedica()+"\n"
 		 		+ "DETALLE: "+getDetalle() +"\n\n";
 		
 		return mensaje;
@@ -41,7 +45,7 @@ public class VisitaMedica extends Servicio {
 	public void ingresa(String m, String d) {
 		// TODO Auto-generated method stub
 		
-		setMotivo(m);
+		setEspecialidadMedica(m);
 		setDetalle(d);
 		
 	}
