@@ -189,6 +189,31 @@ import javax.swing.JSplitPane;
 					
 				}
 			});
+			
+			JButton bExitMainMenu = new JButton("");
+			bExitMainMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			bExitMainMenu.setBorderPainted(false);
+			bExitMainMenu.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {//FINALIZACION DEL PROGRAMA CONTROLADA
+					
+					if (JOptionPane.showConfirmDialog(null, "Esta seguro que desea salir?", "Alerta",//SE PREGUNRTA SI DESEA SALIR REALMENTE POR SI SE APRETO EL BOTON POR ERROR
+					        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {	
+						System.exit(0);//SI NO HAY DATOS DEL TODO EL PROGRAMA SOLO SE CIERRA SIN PREGUNTAR SI DESEA GUARDAR DATOS
+					} else {
+					}
+				}
+			});
+			
+			
+			
+			bExitMainMenu.setToolTipText("Salir de la aplicacion...");
+			bExitMainMenu.setContentAreaFilled(false);
+			bExitMainMenu.setBorder(null);
+			bExitMainMenu.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/VolverPrincipal48px.png")));
+			bExitMainMenu.setBounds(662, 392, 64, 49);
+			inicioApp.add(bExitMainMenu);
 			bIngresaAgente.setForeground(Color.WHITE);
 			bIngresaAgente.setFont(new Font("Times New Roman", Font.BOLD, 13));
 			bIngresaAgente.setFocusPainted(false);
@@ -429,7 +454,11 @@ import javax.swing.JSplitPane;
 			lblResidencia.setBounds(33, 62, 61, 29);
 			panelInserta.add(lblResidencia);
 			
-			JButton listo = new JButton("Listo!");
+			JButton listo = new JButton("");
+			listo.setBorder(null);
+			listo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			listo.setContentAreaFilled(false);
+			listo.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/doneB.png")));
 			listo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					s = new SolicitudSeguroSolidario();
@@ -485,20 +514,35 @@ import javax.swing.JSplitPane;
 					boxTipoServicio.setSelectedIndex(0);
 				}
 			});
-			listo.setToolTipText("finalizar de agregar los datos");
+			listo.setToolTipText("Aceptar y finalizar de agregar los datos");
 			listo.setFont(new Font("Dialog", Font.BOLD, 13));
-			listo.setBounds(314, 390, 109, 29);
+			listo.setBounds(408, 390, 45, 37);
 			panelInserta.add(listo);
 			
-			JButton btnBorraD = new JButton("Cancelar");
+			JButton btnBorraD = new JButton("");
+			btnBorraD.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/deleteB36.png")));
+			btnBorraD.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnBorraD.setContentAreaFilled(false);
+			btnBorraD.setBorder(null);
 			btnBorraD.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					panelInserta.setVisible(false);
+					tNombre.setText(null);
+					tEdad.setText(null);
+					tCedula.setText(null);
+					tDireccionAsegurado.setText(null);
+					tNumeroPoliza.setText(null);
+					boxCategoriaPoliza.setSelectedIndex(0);
+					boxEspecialidadMedica.setSelectedIndex(0);
+					boxTipoCompra.setSelectedIndex(0);
+					boxTipoPagoServicio.setSelectedIndex(0);
+					boxTipoServicio.setSelectedIndex(0);
+					
+					
 				}
 			});
-			btnBorraD.setToolTipText("refresca el menu");
+			btnBorraD.setToolTipText("Cancelar y refrescar el menu");
 			btnBorraD.setFont(new Font("Dialog", Font.BOLD, 13));
-			btnBorraD.setBounds(443, 390, 109, 29);
+			btnBorraD.setBounds(463, 390, 61, 37);
 			panelInserta.add(btnBorraD);
 			
 			JLabel lblNombre = new JLabel("Nombre:");
@@ -1284,11 +1328,151 @@ import javax.swing.JSplitPane;
 			contentPane.add(BienvenidaAgente, "agente");
 			BienvenidaAgente.setLayout(null);
 			
-			panelEliminar = new JPanel();
-			panelEliminar.setVisible(false);
-			
 			JPanel panelActualiza = new JPanel();
 			panelActualiza.setVisible(false);
+			
+			panelEliminar = new JPanel();
+			panelEliminar.setVisible(false);
+			panelEliminar.setBackground(SystemColor.activeCaption);
+			panelEliminar.setBounds(124, 0, 612, 454);
+			BienvenidaAgente.add(panelEliminar);
+			panelEliminar.setLayout(null);
+			
+			JTextArea tPolizaEliminar = new JTextArea();
+			tPolizaEliminar.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					tPolizaEliminar.setText(null);
+				}
+			});
+			
+			tPolizaEliminar.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
+	                {
+                public void keyTyped(KeyEvent e)
+                {
+                    char caracter = e.getKeyChar();
+
+
+                    if(((caracter < '0') ||
+                            (caracter > '9')) &&
+                            (caracter != '\b' ))
+                    {
+                        e.consume();  // ignorar el evento de teclado
+                        lista.mensajeTemporizado("Poliza debe contener solamente numeros", 1800);
+
+                    }
+                }
+            });
+			
+			
+			
+			
+			tPolizaEliminar.addKeyListener(new KeyListener(){
+			   	 
+			   	public void keyTyped(KeyEvent e)
+			   	 
+			   	{if (tPolizaEliminar.getText().length()==3) //LIMITA AL USER A SOLO AGREGAR EL NUMERO DEL PACIENTE QUE SE QUIERE ACTUALIZAR
+			   	 
+			   	     e.consume();
+			   			if(tPolizaEliminar.getText().length()==3) {
+			   				lista.mensajeTemporizado("Poliza consta de 3 digitos", 1800);
+			   			}
+			   	
+			   	}
+			   	 
+			   	public void keyPressed(KeyEvent arg0) {
+			   	}
+			   	 
+			   	public void keyReleased(KeyEvent arg0) {
+			   	}
+			   	});
+			tPolizaEliminar.setToolTipText("Especifique numero de poliza a buscar");
+			tPolizaEliminar.setText("Poliza a Eliminar");
+			tPolizaEliminar.setOpaque(false);
+			tPolizaEliminar.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+			tPolizaEliminar.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(255, 69, 0)));
+			tPolizaEliminar.setBounds(199, 47, 136, 22);
+			panelEliminar.add(tPolizaEliminar);
+			
+			JButton btnEliminaSolicitud = new JButton("");
+			btnEliminaSolicitud.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					
+					//ELIMINACION DE SOLICITUDES CONTROLADA
+					
+					if (JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar la solicitud?", "Alerta",//SE PREGUNRTA SI DESEA SALIR REALMENTE POR SI SE APRETO EL BOTON POR ERROR
+					        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {	
+							lista.suprimir(tPolizaEliminar.getText());
+							tSolicitudesEliminar.setText(lista.acumulaDatos());
+							tPolizaEliminar.setText(null);
+							lista.mensajeTemporizado("Solicitud eliminada", 1500);
+					} else {
+						
+						
+					}
+					
+					
+					
+					
+					/////////////////////////////////////////////////////
+					
+					
+					
+					
+					
+					///////////////////////////////////////////////////////
+				}
+			});
+			btnEliminaSolicitud.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/DeleteOneUser48px.png")));
+			btnEliminaSolicitud.setToolTipText("Presiona para eliminar solicitud");
+			btnEliminaSolicitud.setContentAreaFilled(false);
+			btnEliminaSolicitud.setBorder(null);
+			btnEliminaSolicitud.setBounds(345, 27, 61, 60);
+			panelEliminar.add(btnEliminaSolicitud);
+			
+			JScrollPane sPEliminarSolicitud = new JScrollPane();
+			sPEliminarSolicitud.setBounds(30, 108, 524, 278);
+			panelEliminar.add(sPEliminarSolicitud);
+			
+			tSolicitudesEliminar = new JTextArea();
+			tSolicitudesEliminar.setEditable(false);
+			sPEliminarSolicitud.setViewportView(tSolicitudesEliminar);
+			
+			JButton btnEliminaTodo = new JButton("");
+			btnEliminaTodo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					
+							
+							
+							//ELIMINACION DE SOLICITUDES CONTROLADA
+							
+							if (JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar registro de solicitudes?", "Alerta",//SE PREGUNRTA SI DESEA SALIR REALMENTE POR SI SE APRETO EL BOTON POR ERROR
+							        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {	
+									lista.eliminarLista();
+									lista.mensajeTemporizado("Registro de solicitudes eliminado", 1500);
+									tSolicitudesEliminar.setText(lista.acumulaDatos());
+									tPolizaEliminar.setText(null);
+							} else {
+								
+								
+							}
+							
+							
+					
+					
+					
+					
+				}
+			});
+		
+			btnEliminaTodo.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/DeleteAll48px.png")));
+			btnEliminaTodo.setToolTipText("Presiona para eliminar registro de solicitudes");
+			btnEliminaTodo.setContentAreaFilled(false);
+			btnEliminaTodo.setBorder(null);
+			btnEliminaTodo.setBounds(416, 27, 61, 60);
+			panelEliminar.add(btnEliminaTodo);
 			panelActualiza.setBackground(Color.LIGHT_GRAY);
 			panelActualiza.setBounds(124, 0, 608, 448);
 			BienvenidaAgente.add(panelActualiza);
@@ -1704,103 +1888,6 @@ import javax.swing.JSplitPane;
 			bSearchPac.setFont(new Font("Dialog", Font.BOLD, 13));
 			bSearchPac.setBounds(296, 0, 41, 41);
 			panelActualiza.add(bSearchPac);
-			panelEliminar.setBackground(SystemColor.activeCaption);
-			panelEliminar.setBounds(124, 0, 612, 454);
-			BienvenidaAgente.add(panelEliminar);
-			panelEliminar.setLayout(null);
-			
-			JTextArea tPolizaEliminar = new JTextArea();
-			tPolizaEliminar.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					tPolizaEliminar.setText(null);
-				}
-			});
-			
-			tPolizaEliminar.addKeyListener(new KeyAdapter()// Verificar si la tecla pulsada no es un digito/NUMERO
-	                {
-                public void keyTyped(KeyEvent e)
-                {
-                    char caracter = e.getKeyChar();
-
-
-                    if(((caracter < '0') ||
-                            (caracter > '9')) &&
-                            (caracter != '\b' ))
-                    {
-                        e.consume();  // ignorar el evento de teclado
-                        lista.mensajeTemporizado("Poliza debe contener solamente numeros", 1800);
-
-                    }
-                }
-            });
-			
-			
-			
-			
-			tPolizaEliminar.addKeyListener(new KeyListener(){
-			   	 
-			   	public void keyTyped(KeyEvent e)
-			   	 
-			   	{if (tPolizaEliminar.getText().length()==3) //LIMITA AL USER A SOLO AGREGAR EL NUMERO DEL PACIENTE QUE SE QUIERE ACTUALIZAR
-			   	 
-			   	     e.consume();
-			   			if(tPolizaEliminar.getText().length()==3) {
-			   				lista.mensajeTemporizado("Poliza consta de 3 digitos", 1800);
-			   			}
-			   	
-			   	}
-			   	 
-			   	public void keyPressed(KeyEvent arg0) {
-			   	}
-			   	 
-			   	public void keyReleased(KeyEvent arg0) {
-			   	}
-			   	});
-			tPolizaEliminar.setToolTipText("Especifique numero de poliza a buscar");
-			tPolizaEliminar.setText("Poliza a Eliminar");
-			tPolizaEliminar.setOpaque(false);
-			tPolizaEliminar.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
-			tPolizaEliminar.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(255, 69, 0)));
-			tPolizaEliminar.setBounds(199, 47, 136, 22);
-			panelEliminar.add(tPolizaEliminar);
-			
-			JButton btnEliminaSolicitud = new JButton("");
-			btnEliminaSolicitud.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					lista.suprimir(tPolizaEliminar.getText());
-					tSolicitudesEliminar.setText(lista.acumulaDatos());
-					tPolizaEliminar.setText(null);
-				}
-			});
-			btnEliminaSolicitud.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/DeleteOneUser48px.png")));
-			btnEliminaSolicitud.setToolTipText("Presiona para eliminar solicitud");
-			btnEliminaSolicitud.setContentAreaFilled(false);
-			btnEliminaSolicitud.setBorder(null);
-			btnEliminaSolicitud.setBounds(345, 27, 61, 60);
-			panelEliminar.add(btnEliminaSolicitud);
-			
-			JScrollPane sPEliminarSolicitud = new JScrollPane();
-			sPEliminarSolicitud.setBounds(30, 108, 524, 278);
-			panelEliminar.add(sPEliminarSolicitud);
-			
-			tSolicitudesEliminar = new JTextArea();
-			tSolicitudesEliminar.setEditable(false);
-			sPEliminarSolicitud.setViewportView(tSolicitudesEliminar);
-			
-			JButton btnEliminaTodo = new JButton("");
-			btnEliminaTodo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					lista.eliminarLista();
-					
-				}
-			});
-			btnEliminaTodo.setIcon(new ImageIcon(Menu.class.getResource("/ImagesMenu/DeleteAll48px.png")));
-			btnEliminaTodo.setToolTipText("Presiona para eliminar registro de solicitudes");
-			btnEliminaTodo.setContentAreaFilled(false);
-			btnEliminaTodo.setBorder(null);
-			btnEliminaTodo.setBounds(416, 27, 61, 60);
-			panelEliminar.add(btnEliminaTodo);
 			
 			JPanel panelBotonesMenuAgente = new JPanel();
 			panelBotonesMenuAgente.setBackground(Color.DARK_GRAY);
